@@ -6,8 +6,11 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    %header
-      %h1 Photowalks!!
-    = yield
-    %footer
-      2011
+    %section.topbar
+      .fill
+        .container
+          %a.brand{:href => "#"} Photowalks!!
+    %section.container
+      = yield
+      %footer
+        %p 2011
