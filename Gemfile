@@ -18,6 +18,7 @@ end
 
 gem 'jquery-rails'
 gem 'haml'
+gem 'coffee-filter' # Coffeescript in HAML files
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
