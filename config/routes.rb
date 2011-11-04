@@ -1,4 +1,14 @@
 Photowalks::Application.routes.draw do
+  root :to => 'walks#index'
+
+  get "walks/index"
+
+  get "walks/show"
+
+  get "walks/new"
+
+  get "walks/edit"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
