@@ -18,6 +18,7 @@ end
 
 gem 'jquery-rails'
 gem 'haml'
+gem 'haml-rails', :group => :development
 gem 'coffee-filter' # Coffeescript in HAML files
 
 # To use ActiveModel has_secure_password
@@ -35,4 +36,5 @@ gem 'capistrano'
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
+  gem 'rspec-rails'
 end
