@@ -9,8 +9,10 @@
     %section.topbar
       .fill
         .container
-          %a.brand{:href => "#"} Photowalks!!
+          = link_to("Photowalks!", root_path, {:class => "brand"})
     %section.container
+      %p.notice= notice
+      %p.alert= alert
       = yield
       %footer
         %p 2011

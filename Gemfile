@@ -33,6 +33,10 @@ gem 'capistrano'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
+# User authentication
+gem "devise"
+gem "oa-oauth", :require => "omniauth/oauth"
+
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
