@@ -37,11 +37,14 @@ gem 'capistrano'
 gem "devise"
 gem "oa-oauth", :require => "omniauth/oauth"
 
-group :test do
-  # Pretty printed test output
-  gem 'turn', :require => false
+group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'headless'
+end
+
+group :test do
+  # Pretty printed test output
+  gem 'turn', :require => false
 end
