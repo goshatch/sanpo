@@ -1,4 +1,4 @@
-Photowalks::Application.routes.draw do
+Sanpo::Application.routes.draw do
   devise_for :users
 
   root :to => 'walks#index'
