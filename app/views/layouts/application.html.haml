@@ -11,8 +11,9 @@
         .container
           = link_to("Photowalks!", root_path, {:class => "brand"})
     %section.container
-      %p.notice= notice
-      %p.alert= alert
-      = yield
-      %footer
-        %p 2011
+      .content
+        %p.notice= notice
+        %p.alert= alert
+        = yield
+        %footer
+          %p 2011

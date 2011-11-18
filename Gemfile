@@ -38,13 +38,14 @@ gem "devise"
 gem "oa-oauth", :require => "omniauth/oauth"
 
 group :development, :test do
+  gem 'rspec'
   gem 'rspec-rails'
-  gem 'capybara'
-  gem 'capybara-webkit'
-  gem 'headless'
 end
 
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
+  gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'headless'
 end
