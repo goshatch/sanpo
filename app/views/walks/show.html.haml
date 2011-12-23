@@ -1,10 +1,10 @@
 %h1= @walk.title
-%h2 Description
+%h2= t("walks.show.description")
 %p= @walk.description
-%h2 Photographer's notes
+%h2= t("walks.show.notes")
 %p= @walk.notes
-%h2 More photos
+%h2= t("walks.show.link")
 - if @walk.link
-  %p= link_to("See the gallery", @walk.link)
+  %p= link_to(t("walks.show.link_label"), @walk.link)
 - else
-  %p (No gallery linked)
+  %p= t("walks.show.no_link")

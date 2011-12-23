@@ -2,4 +2,18 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  top:
+    navigation:
+      account:
+        edit: "Edit my account"
+        sign_out: "Sign out"
+        sign_in: "Sign in"
+  walks:
+    index:
+      latest_walks: "Latest photowalks"
+    show:
+      description: "Description"
+      notes: "Photographer's notes"
+      link: "More photos"
+      link_label: "See the gallery"
+      no_link: "(No gallery linked)"
