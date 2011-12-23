@@ -34,6 +34,9 @@ ActiveRecord::Schema.define(:version => 20111105110350) do
   create_table "walks", :force => true do |t|
     t.string   "title"
     t.text     "description"
+    t.text     "notes"
+    t.string   "link"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
