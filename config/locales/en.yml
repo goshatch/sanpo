@@ -2,6 +2,8 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  general:
+    time_ago: "%{time} ago"
   top:
     navigation:
       account:
@@ -17,3 +19,9 @@ en:
       link: "More photos"
       link_label: "See the gallery"
       no_link: "(No gallery linked)"
+  user:
+    by: "By %{name}"
+  activerecord:
+      attributes:
+        user:
+          login: "Username or email"

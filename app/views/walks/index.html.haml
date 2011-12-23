@@ -1,9 +1,12 @@
 .row
-  .span-one-third
-  .span-two-thirds
+  .span16
     %h1 Latest photowalks
     - if @walks
       %ul.walks.list
-      - @walks.each do |walk|
-        %li= link_to walk.title, walk_path(walk)
+        - @walks.each do |walk|
+          %li
+            = link_to walk_path(walk) do
+              %h3= walk.title
+              .meta_date= t("general.time_ago", :time => time_ago_in_words(walk.created_at))
+              .user_info= t("user.by", :name => walk.user.username)
 

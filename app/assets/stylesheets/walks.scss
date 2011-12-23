@@ -1,0 +1,26 @@
+// Place all the styles related to the Walks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.walks.list {
+  border-top: 1px solid #eee;
+  list-style: none;
+  margin: 0 0 25px 0;
+  li {
+    position: relative;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    h3 { line-height: 1.5em; }
+    a:hover {
+      text-decoration: none;
+    }
+    .user_info {
+      position: absolute;
+      right: 0px;
+      top: 10px
+    }
+  }
+  li:hover {
+    background-color: #f9f9f9;
+  }
+}
