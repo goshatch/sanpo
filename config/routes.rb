@@ -2,11 +2,7 @@ Sanpo::Application.routes.draw do
   devise_for :users
 
   root :to => 'walks#index'
-
-  get "walks/index"
-  get "walks/show"
-  get "walks/new"
-  get "walks/edit"
+  resources :walks
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
