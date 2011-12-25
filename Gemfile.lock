@@ -213,7 +213,7 @@ DEPENDENCIES
   headless
   jquery-rails
   oa-oauth
-  paperclip
+  paperclip (~> 2.4)
   rails (= 3.1.2)
   rspec
   rspec-rails

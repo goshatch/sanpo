@@ -3,6 +3,11 @@
 %p= @walk.description
 %h2= t("walks.show.notes")
 %p= @walk.notes
+- if @walk.photos
+  %h2 Photos
+  - @walk.photos.each do |photo|
+    = image_tag photo.image.url(:thumb)
+= link_to "Upload new photo", new_walk_photo_path(@walk)
 %h2= t("walks.show.link")
 - if @walk.link
   %p= link_to(t("walks.show.link_label"), @walk.link)
