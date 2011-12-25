@@ -4,7 +4,8 @@ class CreateLocations < ActiveRecord::Migration
       t.string :label
       t.float :latitude
       t.float :longitude
-
+      t.integer :step_num
+      t.integer :walk_id
       t.timestamps
     end
   end
