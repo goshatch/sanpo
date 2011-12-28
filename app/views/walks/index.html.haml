@@ -1,6 +1,6 @@
 .row
   .span16
-    %h1 Latest photowalks
+    %h1= t("walks.index.latest_walks")
     - if @walks
       %ul.walks.list
         - @walks.each do |walk|

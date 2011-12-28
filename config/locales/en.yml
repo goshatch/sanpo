@@ -4,6 +4,8 @@
 en:
   general:
     time_ago: "%{time} ago"
+    disable_with:
+      uploading: "Uploading..."
   top:
     navigation:
       account:
@@ -19,6 +21,13 @@ en:
       link: "More photos"
       link_label: "See the gallery"
       no_link: "(No gallery linked)"
+  photos:
+    new:
+      upload_new_photo: "Upload a new photo"
+      upload_new_photo_button: "Upload this!"
+    destroy:
+      delete_this_photo: "Delete this photo"
+      confirmation: "Really delete this?"
   user:
     by: "By %{name}"
   activerecord:

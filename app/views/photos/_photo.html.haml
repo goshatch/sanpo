@@ -1,4 +1,4 @@
 = link_to(photo.image.url(:large)) do
   .photo{:id => "photo_#{photo.id}"}
-    = link_to("Delete this photo", walk_photo_path(photo.walk, photo), :class => "controls", :method => :delete, :confirm => "Really delete?", :remote => true)
+    = link_to(t("photos.destroy.delete_this_photo"), walk_photo_path(photo.walk, photo), :class => "controls", :method => :delete, :confirm => t("photos.destroy.confirmation"), :remote => true)
     = image_tag(photo.image.url(:medium))

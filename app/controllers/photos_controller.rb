@@ -20,7 +20,4 @@ class PhotosController < ApplicationController
     end
   end
 
-  def edit
-  end
-
 end

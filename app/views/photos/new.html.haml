@@ -1,5 +1,5 @@
-%h1 New photo upload
+%h1= t("photos.new.upload_new_photo")
 = form_for :photo, :url => walk_photos_path(@photo.walk_id), :html => { :multipart => true } do |form|
   = form.file_field :image
-  = form.submit
+  = form.submit :value => t("photos.new.upload_new_photo_button"), :disable_with => t("general.disable_with.uploading"), :class => "btn primary"
   = form.hidden_field :walk_id
