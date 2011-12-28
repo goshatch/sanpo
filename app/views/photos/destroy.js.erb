@@ -1,0 +1,4 @@
+photo = $("#photo_<%= @photo.id %>");
+photo.fadeOut('fast', function() {
+  photo.remove();
+});
