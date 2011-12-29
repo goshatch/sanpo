@@ -2,10 +2,19 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  helpers:
+    label:
+      walk:
+        title: "Your photowalk's title"
+        description: "Tell us about this walk"
+        notes: "Photographer's notes: what gear to bring? where's a good place to eat? etc..."
+        link: "Link to a related album on Flickr, Facebook, etc."
   general:
     time_ago: "%{time} ago"
+    save: "Save"
     disable_with:
       uploading: "Uploading..."
+      saving: "Saving..."
   top:
     navigation:
       walks:
@@ -24,6 +33,8 @@ en:
       link: "More photos"
       link_label: "See the gallery"
       no_link: "(No gallery linked)"
+    new:
+      new_photowalk: "Report your photowalk"
   photos:
     new:
       upload_new_photo: "Upload a new photo"

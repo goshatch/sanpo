@@ -1,2 +1,15 @@
-%h1 Walks#new
-%p Find me in app/views/walks/new.html.haml
+%h1= t("walks.new.new_photowalk")
+= form_for @walk, :class => "form-stacked" do |f|
+  = field_set_tag do
+    = f.label :title
+    = f.text_field :title
+  = field_set_tag do
+    = f.label :description
+    = f.text_area :description
+  = field_set_tag do
+    = f.label :notes
+    = f.text_area :notes
+  = field_set_tag do
+    = f.label :link
+    = f.text_field :link
+  = f.submit :class => "btn primary", :value => t("general.save"), :disable_with => t("general.disable_with.saving")
