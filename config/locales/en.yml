@@ -8,6 +8,9 @@ en:
       uploading: "Uploading..."
   top:
     navigation:
+      walks:
+        title: "Photowalks"
+        new: "Share a walk"
       account:
         edit: "Edit my account"
         sign_out: "Sign out"
