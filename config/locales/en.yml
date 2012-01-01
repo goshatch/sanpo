@@ -10,6 +10,7 @@ en:
         notes: "Photographer's notes: what gear to bring? where's a good place to eat? etc..."
         link: "Link to a related album on Flickr, Facebook, etc."
   general:
+    title: "SANPO: Social Photowalks"
     time_ago: "%{time} ago"
     save: "Save"
     disable_with:
@@ -24,6 +25,10 @@ en:
         edit: "Edit my account"
         sign_out: "Sign out"
         sign_in: "Sign in"
+  footer:
+    copyright: "© 2012, by <a href='http://twitter.com/gueorgui'>@gueorgui</a>"
+    social:
+      twitter: "Follow @sanpoapp"
   walks:
     index:
       latest_walks: "Latest photowalks"

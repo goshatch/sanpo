@@ -4,7 +4,7 @@
   <%= devise_error_messages! %>
 
   <div><%= f.label :username %><br />
-  <%= f.text_field :username %></div>
+    <%= resource.username %><%= f.hidden_field :username %></div>
 
   <div><%= f.label :email %><br />
   <%= f.email_field :email %></div>

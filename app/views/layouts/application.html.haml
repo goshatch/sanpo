@@ -32,6 +32,12 @@
         %p.notice= notice
         %p.alert= alert
         = yield
-        %footer
-          %p 2011
+    %footer.footer
+      .container
+        %p.pull-right
+          = render :partial => 'shared/social'
+        %p
+          = t('general.title')
+          %br
+          = t('footer.copyright').html_safe
     = render :partial => 'shared/analytics'

@@ -1,15 +1,27 @@
-%h1= t("walks.new.new_photowalk")
-= form_for @walk, :class => "form-stacked" do |f|
-  = field_set_tag do
-    = f.label :title
-    = f.text_field :title
-  = field_set_tag do
-    = f.label :description
-    = f.text_area :description
-  = field_set_tag do
-    = f.label :notes
-    = f.text_area :notes
-  = field_set_tag do
-    = f.label :link
-    = f.text_field :link
-  = f.submit :class => "btn primary", :value => t("general.save"), :disable_with => t("general.disable_with.saving")
+%h1.page-header= t("walks.new.new_photowalk")
+.row
+  .span4
+    %h2 Step 1
+    %p Describe the photowalk you're sharing
+  .span12
+    = form_for @walk, :class => "form-stacked" do |f|
+      = field_set_tag do
+        .clearfix
+          = f.label :title
+          .input
+            = f.text_field :title, :class => "xlarge"
+        .clearfix
+          = f.label :description
+          .input
+            = f.text_area :description, :rows => "5", :class => "xxlarge"
+        .clearfix
+          = f.label :notes
+          .input
+            = f.text_area :notes, :rows => "5", :class => "xxlarge"
+        .clearfix
+          = f.label :link
+          .input
+            = f.text_field :link, :class => "xlarge"
+        .actions
+          = f.submit :class => "btn large primary", :value => t("general.save"), :disable_with => t("general.disable_with.saving")
+
