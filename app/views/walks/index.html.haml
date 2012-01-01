@@ -1,6 +1,7 @@
 .row
   .span16
-    %h1= t("walks.index.latest_walks")
+    .page-header
+      %h1= t("walks.index.latest_walks")
     - if @walks
       %ul.walks.list
         - @walks.each do |walk|
