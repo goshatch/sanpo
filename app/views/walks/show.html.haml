@@ -3,17 +3,17 @@
   :javascript
     var poly;
     var map;
+    var locations = new Array();
 
     function initialize() {
-      var chicago = new google.maps.LatLng(41.879535, -87.624333);
+      var center_point = new google.maps.LatLng("#{@walk.center_coordinates[:latitude]}", "#{@walk.center_coordinates[:longitude]}");
       var myOptions = {
-        zoom: 7,
-        center: chicago,
+        zoom: 17,
+        center: center_point,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
 
       map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
-      console.log("Map: " + map);
       var polyOptions = {
         strokeColor: '#000000',
         strokeOpacity: 1.0,
@@ -22,32 +22,40 @@
       poly = new google.maps.Polyline(polyOptions);
       poly.setMap(map);
 
+      for (var i = 0; i < locations.length; i++) {
+        addLatLng(new google.maps.LatLng(locations[i].lat, locations[i].long));
+      }
       // Add a listener for the click event
-      google.maps.event.addListener(map, 'click', addLatLng);
+      // google.maps.event.addListener(map, 'click', addLatLng);
     }
 
     /**
     * Handles click events on a map, and adds a new point to the Polyline.
     * @param {MouseEvent} mouseEvent
     */
-    function addLatLng(event) {
+    function addLatLng(latLng) {
       var path = poly.getPath();
 
       // Because path is an MVCArray, we can simply append a new coordinate
       // and it will automatically appear
-      path.push(event.latLng);
+      path.push(latLng);
 
       // Add a new marker at the new plotted point on the polyline.
-      var marker = new google.maps.Marker({
-        position: event.latLng,
-        title: '#' + path.getLength(),
-        map: map
-      });
+      // var marker = new google.maps.Marker({
+      //  position: event.latLng,
+      //  title: '#' + path.getLength(),
+      //  map: map
+      // });
     }
-    $(function(){
-      console.log("Body loaded");
-      initialize();
-    });
+  :erb
+    <script>
+      $(function(){
+        <% @walk.locations.each do |location| %>
+        locations.push({lat: '<%= location.latitude %>', long: '<%= location.longitude %>'});
+        <% end %>
+        initialize();
+      });
+    </script>
 .page-header
   %h1= @walk.title
 #map_canvas
