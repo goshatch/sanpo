@@ -1,4 +1,4 @@
-- content_for :body_class do "showWalk" end
+- content_for :body_class do "show_walk" end
 - content_for :head do
   %script{:type => "text/javascript", :src => "//maps.googleapis.com/maps/api/js?sensor=false"}
   :javascript
@@ -67,19 +67,23 @@
 .container
   .page-header
     %h1= @walk.title
-  %h2= t("walks.show.description")
-  %p= @walk.description
-  %h2= t("walks.show.notes")
-  %p= @walk.notes
-  %h2
-    Photos
-    - if current_user and current_user == @walk.user
-      %small= link_to t("photos.new.upload_new_photo"), new_walk_photo_path(@walk), :class => "btn small"
-  - if @walk.photos
-    - @walk.photos.each do |photo|
-      = render :partial => "photos/photo", :locals => {:photo => photo}
-  %h2= t("walks.show.link")
-  - if @walk.link
-    %p= link_to(t("walks.show.link_label"), @walk.link)
-  - else
-    %p= t("walks.show.no_link")
+  .row
+    .span-two-thirds
+      .walk_description
+        %h2= t("walks.show.description")
+        %p= @walk.description
+      .walk_photos
+        %h2
+          Photos
+          - if current_user and current_user == @walk.user
+            %small= link_to t("photos.new.upload_new_photo"), new_walk_photo_path(@walk), :class => "btn small"
+        - if @walk.photos
+          - @walk.photos.each do |photo|
+            = render :partial => "photos/photo", :locals => {:photo => photo}
+    .span-one-third
+      .walk_notes
+        %h2= t("walks.show.notes")
+        %p= @walk.notes
+      .walk_link
+        - unless @walk.link.empty?
+          %h2.btn.large= link_to(t("walks.show.link_label"), @walk.link)

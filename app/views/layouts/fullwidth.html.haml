@@ -1,7 +1,7 @@
 !!! 5
 %html
   = render :partial => "shared/head"
-  %body{:class => "fullWidth #{yield :body_class}"}
+  %body{:class => "full_width #{yield :body_class}"}
     = render :partial => "shared/topbar"
     .content
       %p.notice= notice
