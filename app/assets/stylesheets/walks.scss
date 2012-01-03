@@ -25,6 +25,22 @@
   }
 }
 
-#map_canvas {
-  height: 400px;
+.showWalk {
+  position: relative;
+
+  .page-header {
+    position: absolute;
+    top: 65px;
+    max-width: 640px;
+    z-index: 100;
+    background-color: #fff;
+    margin-bottom: 0px;
+    padding: 5px 10px;
+    border: none;
+    h1 { margin-bottom: 0px; }
+  }
+  #map_canvas {
+    height: 500px;
+    z-index: 1;
+  }
 }

@@ -1,0 +1,11 @@
+!!! 5
+%html
+  = render :partial => "shared/head"
+  %body{:class => "fullWidth #{yield :body_class}"}
+    = render :partial => "shared/topbar"
+    .content
+      %p.notice= notice
+      %p.alert= alert
+      = yield
+    = render :partial => 'shared/footer'
+    = render :partial => 'shared/analytics'

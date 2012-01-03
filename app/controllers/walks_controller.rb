@@ -5,6 +5,7 @@ class WalksController < ApplicationController
 
   def show
     @walk = Walk.find(params[:id])
+    render :layout => 'fullwidth'
   end
 
   def new

@@ -6,9 +6,9 @@
  *= require_tree .
 */
 
-section.container {
+.content {
   background-color: #fff;
-  padding-top: 40px;
+  padding-top: 33px;
 }
 
 .footer {
