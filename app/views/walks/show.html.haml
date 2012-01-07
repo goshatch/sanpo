@@ -1,66 +1,15 @@
 - content_for :body_class do "show_walk" end
 - content_for :head do
   %script{:type => "text/javascript", :src => "//maps.googleapis.com/maps/api/js?sensor=false"}
-  :javascript
-    var poly;
-    var map;
-    var locations = new Array();
-
-    function initialize() {
-      var center_point = new google.maps.LatLng("#{@walk.center_coordinates[:latitude]}", "#{@walk.center_coordinates[:longitude]}");
-      var myOptions = {
-        zoom: 17,
-        center: center_point,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        panControl: false,
-        scrollwheel: false,
-        streetViewControl: false,
-        zoomControlOptions: {
-          position: google.maps.ControlPosition.LEFT_CENTER
-        }
-      };
-
-      map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
-      var polyOptions = {
-        strokeColor: '#000000',
-        strokeOpacity: 1.0,
-        strokeWeight: 3
-      }
-      poly = new google.maps.Polyline(polyOptions);
-      poly.setMap(map);
-
-      for (var i = 0; i < locations.length; i++) {
-        addLatLng(new google.maps.LatLng(locations[i].lat, locations[i].long));
-      }
-      // Add a listener for the click event
-      // google.maps.event.addListener(map, 'click', addLatLng);
-    }
-
-    /**
-    * Handles click events on a map, and adds a new point to the Polyline.
-    * @param {MouseEvent} mouseEvent
-    */
-    function addLatLng(latLng) {
-      var path = poly.getPath();
-
-      // Because path is an MVCArray, we can simply append a new coordinate
-      // and it will automatically appear
-      path.push(latLng);
-
-      // Add a new marker at the new plotted point on the polyline.
-      // var marker = new google.maps.Marker({
-      //  position: event.latLng,
-      //  title: '#' + path.getLength(),
-      //  map: map
-      // });
-    }
   :erb
     <script>
+      var map = null;
+      var locations = new Array();
+      <% @walk.locations.each do |location| %>
+        locations.push({lat: '<%= location.latitude %>', lon: '<%= location.longitude %>'});
+      <% end %>
       $(function(){
-        <% @walk.locations.each do |location| %>
-        locations.push({lat: '<%= location.latitude %>', long: '<%= location.longitude %>'});
-        <% end %>
-        initialize();
+        map = new SanpoMap("<%= @walk.center_coordinates[:latitude] %>", "<%= @walk.center_coordinates[:longitude] %>", locations);
       });
     </script>
 #map_canvas
