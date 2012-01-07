@@ -1,4 +1,6 @@
 class WalksController < ApplicationController
+  before_filter :authenticate_user!, :only => [:new, :create, :edit]
+
   def index
     @walks = Walk.find(:all).reverse
   end
@@ -10,6 +12,7 @@ class WalksController < ApplicationController
 
   def new
     @walk = Walk.new
+    @walk.user = current_user
   end
 
   def create

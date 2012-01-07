@@ -1,0 +1,8 @@
+#map_container
+  #map_canvas
+  - if @walk.user == current_user
+    #map_controls
+      .control.editButtonContainer
+        = link_to "Edit the route", "#", :class => "btn large control editButton"
+      .control.searchField
+        HERE WILL BE A SEARCH FIELD

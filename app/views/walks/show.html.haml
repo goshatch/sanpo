@@ -1,6 +1,7 @@
 - content_for :body_class do "show_walk" end
-- content_for :head do
+- content_for :pre_head do
   %script{:type => "text/javascript", :src => "//maps.googleapis.com/maps/api/js?sensor=false"}
+- content_for :head do
   :erb
     <script>
       var map = null;
@@ -12,10 +13,11 @@
         map = new SanpoMap("<%= @walk.center_coordinates[:latitude] %>", "<%= @walk.center_coordinates[:longitude] %>", locations);
       });
     </script>
-#map_canvas
 .container
   .page-header
     %h1= @walk.title
+= render :partial => 'map'
+.container
   .row
     .span-two-thirds
       .walk_description

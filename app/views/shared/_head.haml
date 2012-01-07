@@ -1,6 +1,7 @@
 / サンポｷﾀ━━━━━━(ﾟ∀ﾟ)━━━━━━ !!!!!
 %head
-  %title SANPO: Social Photowalks
+  %title= "SANPO: Social Photowalks"
+  = yield :pre_head
   = stylesheet_link_tag "application"
   = javascript_include_tag "application"
   = csrf_meta_tags

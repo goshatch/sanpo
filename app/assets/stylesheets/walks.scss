@@ -67,9 +67,43 @@
     }
   }
 
-  #map_canvas {
-    height: 500px;
-    z-index: 1;
+  $containerBackground: rgba(128, 128, 128, 0.5);
+  $containerEditModeBackground: rgba(255, 128, 128, 0.8);
+
+  #map_container {
+    position: relative;
     margin-bottom: 10px;
+    padding-bottom: 5px;
+    background-color: $containerBackground;
+
+    #map_canvas {
+      height: 500px;
+      z-index: 1;
+    }
+
+    #map_controls {
+      position: relative;
+      .editButtonContainer {
+        background-color: #fff;
+        display: block;
+        position: absolute;
+        top: -60px;
+        left: 50%;
+        margin-left: -75px;
+        z-index: 100;
+        padding: 5px;
+        border-radius: 10px;
+        .editButton {
+          width: 140px;
+          text-align: center;
+        }
+      }
+      .searchField { display: none; }
+    }
+  }
+  #map_container.editMode {
+    #map_controls {
+      .searchField { display: block; }
+    }
   }
 }

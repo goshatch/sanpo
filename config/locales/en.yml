@@ -20,6 +20,7 @@ en:
     navigation:
       walks:
         title: "Photowalks"
+        recent: "Recent walks"
         new: "Share a walk"
       account:
         edit: "Edit my account"

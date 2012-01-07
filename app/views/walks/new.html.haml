@@ -1,15 +1,16 @@
 - content_for :body_class do "show_walk" end
-- content_for :head do
+- content_for :pre_head do
   %script{:type => "text/javascript", :src => "//maps.googleapis.com/maps/api/js?sensor=false"}
+- content_for :head do
   :javascript
     var map = null;
     $(function(){
-      map = new SanpoMap("35.638189499999996", "139.722814");
+      map = new SanpoMap("35.638189499999996", "139.722814", [], true);
     });
 .page-header
   %h1= t("walks.new.new_photowalk")
 .row
-  #map_canvas.span16
+  = render :partial => 'map'
   .span4
     %h2 Step 1
     %p Describe the photowalk you're sharing
