@@ -7,6 +7,7 @@ Sanpo::Application.routes.draw do
     resources :photos
   end
 
+  match 'walks/:id/update_waypoints' => 'walks#update_waypoints'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

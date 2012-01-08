@@ -9,19 +9,22 @@ class window.SanpoMap
     centerLat: null
     centerLng: null
     isNewWalk: false
+    walkId: -1
 
   constructor: (options) ->
     # If we get passed an options object, set options accordingly
     # Options that haven't been explicitly set use the default values
     if options
-      if options.waypoints
+      if options.waypoints != undefined
         @options.waypoints = options.waypoints
-      if options.centerLat
+      if options.centerLat != undefined
         @options.centerLat = options.centerLat
-      if options.centerLng
+      if options.centerLng != undefined
         @options.centerLng = options.centerLng
-      if options.isNewWalk
+      if options.isNewWalk != undefined
         @options.isNewWalk = options.isNewWalk
+      if options.walkId != undefined
+        @options.walkId = options.walkId
 
     # Initialize the map itself
     @centerPoint = new google.maps.LatLng(@options.centerLat, @options.centerLng)
@@ -47,6 +50,7 @@ class window.SanpoMap
     # if a path already exists, build it here
     if @options.waypoints.length > 0
       @addLatLngToPath(new google.maps.LatLng(waypoint.lat, waypoint.lon)) for waypoint in @options.waypoints
+      @updateStartGoalIcons()
 
     # Keep track of changes to walk so that we only update the db if needed
     @walkChanged = false
@@ -71,6 +75,7 @@ class window.SanpoMap
     if @editMode
       @createMarkerVertex(latLng).editIndex = path.getLength() - 1
       @walkChanged = true
+      @updateVertexIcons()
     console.log "path: #{path.b.toString()}"
 
   toggleEditMode: ->
@@ -88,6 +93,7 @@ class window.SanpoMap
       console.log "Requested mode already active, not setting again"
 
   startEditMode: =>
+    @clearMarkers()
     @createMarkers()
     console.log "Starting edit mode"
 
@@ -107,6 +113,7 @@ class window.SanpoMap
     $('#map_container').removeClass 'editMode'
     $('.editButton').removeClass('danger').addClass('primary').text("Edit the route")
 
+    @updateStartGoalIcons()
     @saveUpdatedPath()
 
   # Save waypoints to the form (if new walk) or to the db (if updating a walk)
@@ -123,6 +130,23 @@ class window.SanpoMap
         )
     else if @walkChanged
       console.log "Updating a walk: sending an ajax update request"
+      waypoints_to_save = []
+      @poly.getPath().forEach (vertex, index) ->
+        waypoints_to_save.push(
+          latitude: vertex.lat()
+          longitude: vertex.lng()
+          step_num: index
+        )
+      if @options.walkId
+        $.ajax(
+          type: 'POST',
+          url: "/walks/#{@options.walkId}/update_waypoints",
+          data: 'waypoints=' + JSON.stringify(waypoints_to_save),
+          success: (data) ->
+            console.log "Route saved"
+        )
+      else
+        console.log "This shouldn't happen: want to update a walk's waypoints, but don't have a walkId"
     else
       console.log "No changes!"
 
@@ -132,6 +156,8 @@ class window.SanpoMap
   createMarkers: ->
     @poly.getPath().forEach (vertex, index) =>
       @createMarkerVertex(vertex).editIndex = index
+    if @editMode
+      @updateVertexIcons()
 
   clearMarkers: ->
     @poly.getPath().forEach (vertex, index) ->
@@ -139,22 +165,67 @@ class window.SanpoMap
         vertex.marker.setMap(null)
         vertex.marker = undefined
 
-  createMarkerVertex: (point) ->
+  updateStartGoalIcons: ->
+    path = @poly.getPath()
+    start = path.getAt(0)
+    goal = path.getAt(path.getLength() - 1)
+
+    @createMarkerVertex(start, (
+      addListeners: false
+      icon: @startImage
+      draggable: false
+    ))
+    @createMarkerVertex(goal, (
+      addListeners: false
+      icon: @goalImage
+      draggable: false
+    ))
+
+  updateVertexIcons: ->
+    path = @poly.getPath()
+    path.forEach (vertex, index) =>
+      if index == 0
+        vertex.marker.type = 'start'
+        vertex.marker.setIcon(@vertexStartImage)
+      else if index == (path.getLength() - 1)
+        vertex.marker.type = 'goal'
+        vertex.marker.setIcon(@vertexGoalImage)
+      else
+        vertex.marker.type = 'normal'
+        vertex.marker.setIcon(@vertexImage)
+
+
+  createMarkerVertex: (point, _markerOptions) ->
+    markerOptions = (
+      addListeners: true
+      icon: @vertexImage
+      draggable: true
+    )
+    if _markerOptions
+      if _markerOptions.addListeners != undefined
+        markerOptions.addListeners = _markerOptions.addListeners
+      if _markerOptions.icon != undefined
+        markerOptions.icon = _markerOptions.icon
+      if _markerOptions.draggable != undefined
+        markerOptions.draggable = _markerOptions.draggable
+
     vertex = point.marker
     if !vertex
       vertex = new google.maps.Marker(
         position: point
         map: @map
-        icon: @vertexImage
-        draggable: true
+        icon: markerOptions.icon
+        draggable: markerOptions.draggable
         raiseOnDrag: false
+        type: 'normal'
         self: this # OMG, this is the ugliest thing ever
       )
-      google.maps.event.addListener(vertex, "mouseover", @vertexMouseOver)
-      google.maps.event.addListener(vertex, "mouseout", @vertexMouseOut)
-      google.maps.event.addListener(vertex, "drag", @vertexDrag)
-      google.maps.event.addListener(vertex, "dragend", @vertexDragEnd)
-      google.maps.event.addListener(vertex, "rightclick", @vertexRightClick)
+      if markerOptions.addListener == true
+        google.maps.event.addListener(vertex, "mouseover", @vertexMouseOver)
+        google.maps.event.addListener(vertex, "mouseout", @vertexMouseOut)
+        google.maps.event.addListener(vertex, "drag", @vertexDrag)
+        google.maps.event.addListener(vertex, "dragend", @vertexDragEnd)
+        google.maps.event.addListener(vertex, "rightclick", @vertexRightClick)
       point.marker = vertex
       return vertex
     vertex.setPosition(point)
@@ -173,11 +244,63 @@ class window.SanpoMap
     new google.maps.Point(8, 8)
   )
 
+  startImage: new google.maps.MarkerImage(
+    '/assets/start.png',
+    new google.maps.Size(32, 35),
+    new google.maps.Point(0, 0),
+    new google.maps.Point(24, 27)
+  )
+
+  vertexStartImage: new google.maps.MarkerImage(
+    '/assets/vertex_start.png',
+    new google.maps.Size(32, 35),
+    new google.maps.Point(0, 0),
+    new google.maps.Point(24, 27)
+  )
+
+  vertexStartOverImage: new google.maps.MarkerImage(
+    '/assets/vertex_start_over.png',
+    new google.maps.Size(32, 35),
+    new google.maps.Point(0, 0),
+    new google.maps.Point(24, 27)
+  )
+
+  goalImage: new google.maps.MarkerImage(
+    '/assets/goal.png',
+    new google.maps.Size(28, 35),
+    new google.maps.Point(0, 0),
+    new google.maps.Point(20, 27)
+  )
+
+  vertexGoalImage: new google.maps.MarkerImage(
+    '/assets/vertex_goal.png',
+    new google.maps.Size(28, 35),
+    new google.maps.Point(0, 0),
+    new google.maps.Point(20, 27)
+  )
+
+  vertexGoalOverImage: new google.maps.MarkerImage(
+    '/assets/vertex_goal_over.png',
+    new google.maps.Size(28, 35),
+    new google.maps.Point(0, 0),
+    new google.maps.Point(20, 27)
+  )
+
   vertexMouseOver: ->
-    this.setIcon(this.self.vertexOverImage)
+    if this.type == 'normal'
+      this.setIcon(this.self.vertexOverImage)
+    else if this.type == 'start'
+      this.setIcon(this.self.vertexStartOverImage)
+    else if this.type == 'goal'
+      this.setIcon(this.self.vertexGoalOverImage)
 
   vertexMouseOut: ->
-    this.setIcon(this.self.vertexImage)
+    if this.type == 'normal'
+      this.setIcon(this.self.vertexImage)
+    else if this.type == 'start'
+      this.setIcon(this.self.vertexStartImage)
+    else if this.type == 'goal'
+      this.setIcon(this.self.vertexGoalImage)
 
   vertexDrag: ->
     vertex = this.getPosition()
@@ -186,7 +309,21 @@ class window.SanpoMap
     this.self.walkChanged = true
 
   vertexDragEnd:  ->
-    console.log "ending drag - path: #{this.self.poly.getPath().b.toString()}"
+    console.log "ending drag - path: #{this.self.poly.getPath().getArray().toString()}"
 
   vertexRightClick: ->
-    console.log "vertexRightClick"
+    polyline = this.self.poly
+    vertex = polyline.getPath().getAt(this.editIndex)
+
+    console.log "Removing at #{this.editIndex}"
+    polyline.getPath().removeAt(this.editIndex)
+
+    this.setMap(null)
+    polyline.getPath().forEach (vertex, index) ->
+      if vertex.marker
+        vertex.marker.editIndex = index
+
+    if polyline.getPath().getLength() == 1
+      polyline.getPath().pop().marker.setMap(null)
+
+    this.self.walkChanged = true

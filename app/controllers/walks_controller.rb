@@ -25,8 +25,18 @@ class WalksController < ApplicationController
   def update_waypoints
     @walk = Walk.find(params[:id])
     raise "Permission denied" unless @walk.user == current_user
-
-
+    parsed_json = JSON.parse(params[:waypoints])
+    if parsed_json
+      @walk.waypoints.destroy_all
+      parsed_json.each do |waypoint|
+        @walk.waypoints << Waypoint.create(
+          :latitude => waypoint["latitude"],
+          :longitude => waypoint["longitude"],
+          :step_num => waypoint["step_num"]
+        )
+      end
+      @walk.save
+    end
   end
 
   def edit

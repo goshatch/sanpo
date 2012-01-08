@@ -11,6 +11,7 @@
       <% end %>
       $(function(){
         map = new SanpoMap({
+          walkId: "<%= @walk.id %>",
           centerLat: "<%= @walk.center_coordinates[:latitude] %>",
           centerLng: "<%= @walk.center_coordinates[:longitude] %>",
           waypoints: waypoints
