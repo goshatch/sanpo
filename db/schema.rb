@@ -11,17 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120103115245) do
-
-  create_table "locations", :force => true do |t|
-    t.string   "label"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.integer  "step_num"
-    t.integer  "walk_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20120108041728) do
 
   create_table "photos", :force => true do |t|
     t.integer  "walk_id"
@@ -60,6 +50,16 @@ ActiveRecord::Schema.define(:version => 20120103115245) do
     t.text     "notes"
     t.string   "link"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "waypoints", :force => true do |t|
+    t.string   "label"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.integer  "step_num"
+    t.integer  "walk_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

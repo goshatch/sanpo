@@ -117,8 +117,9 @@ class window.SanpoMap
       $('#waypoints_container').html('')
       @poly.getPath().forEach (vertex, index) ->
         $('#waypoints_container').append(
-          "<input type='hidden' id='walk_waypoints_#{index}_lat' name='walk[waypoints][#{index}][lat]' value='#{vertex.lat()}' />" \
-          + "<input type='hidden' id='walk_waypoints_#{index}_lng' name='walk[waypoints][#{index}][lng]' value='#{vertex.lng()}' />"
+          "<input type='hidden' id='walk_waypoints_attributes_#{index}_latitude' name='walk[waypoints_attributes][#{index}][latitude]' value='#{vertex.lat()}' />" \
+          + "<input type='hidden' id='walk_waypoints_attributes_#{index}_longitude' name='walk[waypoints_attributes][#{index}][longitude]' value='#{vertex.lng()}' />" \
+          + "<input type='hidden' id='walk_waypoints_attributes_#{index}_step_num' name='walk[waypoints_attributes][#{index}][step_num]' value='#{index}' />"
         )
     else if @walkChanged
       console.log "Updating a walk: sending an ajax update request"

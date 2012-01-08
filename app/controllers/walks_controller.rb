@@ -1,5 +1,5 @@
 class WalksController < ApplicationController
-  before_filter :authenticate_user!, :only => [:new, :create, :edit]
+  before_filter :authenticate_user!, :only => [:new, :create, :edit, :update_waypoints]
 
   def index
     @walks = Walk.find(:all).reverse
@@ -22,8 +22,16 @@ class WalksController < ApplicationController
     redirect_to @walk
   end
 
+  def update_waypoints
+    @walk = Walk.find(params[:id])
+    raise "Permission denied" unless @walk.user == current_user
+
+
+  end
+
   def edit
     @walk = Walk.find(params[:id])
+    raise "Permission denied" unless @walk.user == current_user
   end
 
 end
