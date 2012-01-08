@@ -5,7 +5,11 @@
   :javascript
     var map = null;
     $(function(){
-      map = new SanpoMap("35.638189499999996", "139.722814", [], true);
+      map = new SanpoMap({
+        centerLat: "35.638189499999996",
+        centerLng: "139.722814",
+        isNewWalk: true
+      });
     });
 .page-header
   %h1= t("walks.new.new_photowalk")
@@ -33,6 +37,7 @@
           = f.label :link
           .input
             = f.text_field :link, :class => "xlarge"
+        #waypoints_container
         .actions
           = f.submit :class => "btn large primary", :value => t("general.save"), :disable_with => t("general.disable_with.saving")
 

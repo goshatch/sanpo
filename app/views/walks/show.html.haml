@@ -5,12 +5,16 @@
   :erb
     <script>
       var map = null;
-      var locations = new Array();
-      <% @walk.locations.each do |location| %>
-        locations.push({lat: '<%= location.latitude %>', lon: '<%= location.longitude %>'});
+      var waypoints = new Array();
+      <% @walk.locations.each do |waypoint| %>
+        waypoints.push({lat: '<%= waypoint.latitude %>', lon: '<%= waypoint.longitude %>'});
       <% end %>
       $(function(){
-        map = new SanpoMap("<%= @walk.center_coordinates[:latitude] %>", "<%= @walk.center_coordinates[:longitude] %>", locations);
+        map = new SanpoMap({
+          centerLat: "<%= @walk.center_coordinates[:latitude] %>",
+          centerLng: "<%= @walk.center_coordinates[:longitude] %>",
+          waypoints: waypoints
+        });
       });
     </script>
 .container
