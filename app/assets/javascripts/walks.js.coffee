@@ -76,7 +76,7 @@ class window.SanpoMap
       @createMarkerVertex(latLng).editIndex = path.getLength() - 1
       @walkChanged = true
       @updateVertexIcons()
-    console.log "path: #{path.b.toString()}"
+    # console.log "path: #{path.b.toString()}"
 
   toggleEditMode: ->
     @setEditMode(!@editMode)
@@ -95,7 +95,7 @@ class window.SanpoMap
   startEditMode: =>
     @clearMarkers()
     @createMarkers()
-    console.log "Starting edit mode"
+    # console.log "Starting edit mode"
 
     google.maps.event.addListener(@map, 'click', @mapClickHandler)
     @map.draggableCursor = 'crosshair'
@@ -105,7 +105,7 @@ class window.SanpoMap
 
   stopEditMode: =>
     @clearMarkers()
-    console.log "Stopping edit mode"
+    # console.log "Stopping edit mode"
 
     google.maps.event.clearListeners(@map, 'click')
     @map.draggableCursor = 'auto'
@@ -118,9 +118,9 @@ class window.SanpoMap
 
   # Save waypoints to the form (if new walk) or to the db (if updating a walk)
   saveUpdatedPath: ->
-    console.log "Saving the path: #{@poly.getPath().b.toString()}"
+    # console.log "Saving the path: #{@poly.getPath().b.toString()}"
     if @options.isNewWalk
-      console.log "This is a new walk: saving waypoints into the form"
+      # console.log "This is a new walk: saving waypoints into the form"
       $('#waypoints_container').html('')
       @poly.getPath().forEach (vertex, index) ->
         $('#waypoints_container').append(
@@ -129,7 +129,7 @@ class window.SanpoMap
           + "<input type='hidden' id='walk_waypoints_attributes_#{index}_step_num' name='walk[waypoints_attributes][#{index}][step_num]' value='#{index}' />"
         )
     else if @walkChanged
-      console.log "Updating a walk: sending an ajax update request"
+      # console.log "Updating a walk: sending an ajax update request"
       waypoints_to_save = []
       @poly.getPath().forEach (vertex, index) ->
         waypoints_to_save.push(
@@ -220,7 +220,7 @@ class window.SanpoMap
         type: 'normal'
         self: this # OMG, this is the ugliest thing ever
       )
-      if markerOptions.addListener == true
+      if markerOptions.addListeners
         google.maps.event.addListener(vertex, "mouseover", @vertexMouseOver)
         google.maps.event.addListener(vertex, "mouseout", @vertexMouseOut)
         google.maps.event.addListener(vertex, "drag", @vertexDrag)
@@ -309,13 +309,13 @@ class window.SanpoMap
     this.self.walkChanged = true
 
   vertexDragEnd:  ->
-    console.log "ending drag - path: #{this.self.poly.getPath().getArray().toString()}"
+    # console.log "ending drag - path: #{this.self.poly.getPath().getArray().toString()}"
 
   vertexRightClick: ->
     polyline = this.self.poly
     vertex = polyline.getPath().getAt(this.editIndex)
 
-    console.log "Removing at #{this.editIndex}"
+    # console.log "Removing at #{this.editIndex}"
     polyline.getPath().removeAt(this.editIndex)
 
     this.setMap(null)
@@ -327,3 +327,4 @@ class window.SanpoMap
       polyline.getPath().pop().marker.setMap(null)
 
     this.self.walkChanged = true
+    this.self.updateVertexIcons()
