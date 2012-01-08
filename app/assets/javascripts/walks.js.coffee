@@ -17,7 +17,7 @@ class window.SanpoMap
     @map = new google.maps.Map(document.getElementById('map_canvas'), options)
 
     polyOptions =
-      strokeColor: '#f00'
+      strokeColor: '#00f'
       strokeOpacity: 0.5
       strokeWeight: 5
 
@@ -35,20 +35,13 @@ class window.SanpoMap
       event.preventDefault()
 
   mapClickHandler: (event) =>
-    @clearMarkers()
     @addLatLngToPath(event.latLng)
-    @createMarkers()
 
   addLatLngToPath: (latLng) ->
     path = @poly.getPath()
     path.push(latLng)
+    @createMarkerVertex(latLng).editIndex = path.getLength() - 1
     console.log "path: #{path.b.toString()}"
-
-    marker = new google.maps.Marker(
-      position: event.latLng
-      title: '#' + path.getLength()
-      map: @map
-    )
 
   toggleEditMode: ->
     @setEditMode(!@editMode)
@@ -57,16 +50,15 @@ class window.SanpoMap
     if editMode != @editMode
       @editMode = editMode
       if @editMode
-        console.log "Starting edit mode"
         @startEditMode()
       else
-        console.log "Stopping edit mode"
         @stopEditMode()
     else
       console.log "Requested mode already active, not setting again"
 
   startEditMode: =>
     @createMarkers()
+    console.log "Starting edit mode"
 
     google.maps.event.addListener(@map, 'click', @mapClickHandler)
     @map.draggableCursor = 'crosshair'
@@ -106,6 +98,8 @@ class window.SanpoMap
         map: @map
         poly: @poly
         icon: @vertexImage
+        image: @vertexImage
+        hoverImage: @vertexOverImage
         draggable: true
         raiseOnDrag: false
       )
@@ -136,9 +130,11 @@ class window.SanpoMap
 
   vertexMouseOver: ->
     console.log "vertexMouseOver"
+    this.setIcon(this.hoverImage)
 
   vertexMouseOut: ->
     console.log "vertexMouseOut"
+    this.setIcon(this.image)
 
   vertexDrag: ->
     vertex = this.getPosition()
