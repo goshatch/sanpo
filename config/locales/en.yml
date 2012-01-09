@@ -10,6 +10,7 @@ en:
         notes: "Photographer's notes: what gear to bring? where's a good place to eat? etc..."
         link: "Link to a related album on Flickr, Facebook, etc."
   general:
+    default_description: "Share your favorite photowalk itineraries, discover new places to take photos and make friends!"
     title: "SANPO — Social Photowalks"
     titles:
       walk:
@@ -43,6 +44,7 @@ en:
       notes: "Photographer's notes"
       link: "More photos"
       link_label: "See the gallery"
+      by: "Added by %{name}"
     new:
       new_photowalk: "Report your photowalk"
   photos:

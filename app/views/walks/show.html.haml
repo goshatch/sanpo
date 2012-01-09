@@ -1,4 +1,5 @@
 - content_for :title do t("general.titles.walk.show", {:walk_title => @walk.title}) end
+- content_for :description do "[by #{@walk.user.username}] #{@walk.description}" end
 - content_for :body_class do "show_walk" end
 - content_for :head do
   %script{:type => "text/javascript", :src => "//maps.googleapis.com/maps/api/js?sensor=false"}
@@ -7,8 +8,7 @@
     <script>
       var map = null;
       var waypoints = new Array();
-      <% @walk.waypoints.each do |waypoint| %>
-        waypoints.push({lat: '<%= waypoint.latitude %>', lon: '<%= waypoint.longitude %>'});
+      <% @walk.waypoints.each do |waypoint| %>waypoints.push({lat: '<%= waypoint.latitude %>', lon: '<%= waypoint.longitude %>'});
       <% end %>
       $(function(){
         map = new SanpoMap({
@@ -21,7 +21,9 @@
     </script>
 .container
   .page-header
-    %h1= @walk.title
+    %h1
+      = @walk.title
+      .walkCreator= t("walks.show.by", {:name => @walk.user.username})
 = render :partial => 'map'
 .container
   .row

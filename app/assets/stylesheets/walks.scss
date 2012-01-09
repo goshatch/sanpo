@@ -37,7 +37,21 @@
     margin-bottom: 0px;
     padding: 5px 10px;
     border: none;
-    h1 { margin-bottom: 0px; }
+    h1 {
+      margin-bottom: 0px;
+      position: relative;
+      .walkCreator {
+        font-size: 12px;
+        font-weight: normal;
+        line-height: 18px;
+        position: absolute;
+        z-index: 100;
+        background-color: rgba(255,255,255,0.9);
+        padding: 7px 14px;
+        bottom: -43px;
+        left: -10px;
+      }
+    }
   }
 
   .walk_notes {
