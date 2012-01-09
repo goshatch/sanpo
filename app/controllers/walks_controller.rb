@@ -13,6 +13,7 @@ class WalksController < ApplicationController
   def new
     @walk = Walk.new
     @walk.user = current_user
+    render :layout => 'fullwidth'
   end
 
   def create

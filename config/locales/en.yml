@@ -14,7 +14,7 @@ en:
     title: "SANPO — Social Photowalks"
     titles:
       walk:
-        show: "%{walk_title}: a photowalk on "
+        show: "%{walk_title}: a photowalk on"
         new: "Submit a new photowalk on "
     time_ago: "%{time} ago"
     save: "Save"

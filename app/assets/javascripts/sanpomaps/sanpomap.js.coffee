@@ -6,8 +6,9 @@ class window.SanpoMap
   # TODO: get sensible defaults for centerLat/Lng
   options:
     waypoints: []
-    centerLat: null
-    centerLng: null
+    centerLat: 35.640
+    centerLng: 139.667
+    zoomLevel: 9
     isNewWalk: false
     walkId: -1
 
@@ -25,11 +26,13 @@ class window.SanpoMap
         @options.isNewWalk = options.isNewWalk
       if options.walkId != undefined
         @options.walkId = options.walkId
+      if options.zoomLevel != undefined
+        @options.zoomLevel = options.zoomLevel
 
     # Initialize the map itself
     @centerPoint = new google.maps.LatLng(@options.centerLat, @options.centerLng)
     mapOptions =
-      zoom: 17
+      zoom: @options.zoomLevel
       center: @centerPoint
       mapTypeId: google.maps.MapTypeId.ROADMAP
       panControl: false

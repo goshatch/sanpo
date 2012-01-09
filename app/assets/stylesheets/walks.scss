@@ -25,15 +25,22 @@
   }
 }
 
+@mixin box-shadow {
+  -webkit-box-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+  -moz-box-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+}
+
 .show_walk {
   .container { position: relative; }
 
   .page-header {
+    @include box-shadow;
     position: absolute;
     top: 45px;
     max-width: 535px;
     z-index: 100;
-    background-color: rgba(255,255,255,0.9);
+    background-color: #fff;
     margin-bottom: 0px;
     padding: 5px 10px;
     border: none;
@@ -41,12 +48,13 @@
       margin-bottom: 0px;
       position: relative;
       .walkCreator {
+        @include box-shadow;
         font-size: 12px;
         font-weight: normal;
         line-height: 18px;
         position: absolute;
         z-index: 100;
-        background-color: rgba(255,255,255,0.9);
+        background-color: #fff;
         padding: 7px 14px;
         bottom: -43px;
         left: -10px;
@@ -98,6 +106,7 @@
     #map_controls {
       position: relative;
       .editButtonContainer {
+        @include box-shadow;
         background-color: #fff;
         display: block;
         position: absolute;
