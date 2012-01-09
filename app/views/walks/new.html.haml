@@ -4,36 +4,34 @@
   %script{:type => "text/javascript", :src => "//maps.googleapis.com/maps/api/js?sensor=false"}
   = javascript_include_tag('sanpomaps/sanpomap')
   :javascript
-    var map = null;
-    var options = {
-      isNewWalk: true
-    }
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        function (position) {
-          options.centerLat = position.coords.latitude;
-          options.centerLng = position.coords.longitude;
-        },
-        function (error) {
-          switch(error.code) {
-            case error.TIMEOUT:
-              console.log('geolocation: Timeout');
-              break;
-            case error.POSITION_UNAVAILABLE:
-              console.log('geolocation: Position unavailable');
-              break;
-            case error.PERMISSION_DENIED:
-              console.log('geolocation: Permission denied');
-              break;
-            case error.UNKNOWN_ERROR:
-              console.log('geolocation: Unknown error');
-              break;
-          }
-        }
-      );
-    }
     $(function(){
-      map = new SanpoMap(options);
+      map = new SanpoMap({isNewWalk: true});
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          function (position) {
+            var coords = position.coords || position.coordinate || position;
+            console.log("Successfully geolocated! " + coords.latitude + "x" + coords.longitude);
+            var latLng = new google.maps.LatLng(coords.latitude, coords.longitude);
+            map.map.setCenter(latLng);
+          },
+          function (error) {
+            switch(error.code) {
+              case error.TIMEOUT:
+                console.log('geolocation: Timeout');
+                break;
+              case error.POSITION_UNAVAILABLE:
+                console.log('geolocation: Position unavailable');
+                break;
+              case error.PERMISSION_DENIED:
+                console.log('geolocation: Permission denied');
+                break;
+              case error.UNKNOWN_ERROR:
+                console.log('geolocation: Unknown error');
+                break;
+            }
+          }
+        );
+      }
     });
 .container
   .page-header
