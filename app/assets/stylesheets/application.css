@@ -32,3 +32,8 @@
 .hidden {
   display: none;
 }
+
+.highlight {
+  background-color: #FEE9CC;
+  padding: 5px 10px;
+}

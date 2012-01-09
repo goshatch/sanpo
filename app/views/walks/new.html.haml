@@ -41,8 +41,9 @@
 .container
   .row
     .span4
-      %h2 Step 1
-      %p Describe the photowalk you're sharing
+      .highlight
+        %h2 ProTip™
+        %p Click the precise location where you started your walk on the map above. Click again to add the next waypoint, right-click a waypoint to delete it.
     .span12
       = form_for @walk, :class => "form-stacked" do |f|
         = field_set_tag do

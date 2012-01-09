@@ -61,6 +61,7 @@ class window.SanpoMap
 
     # If this is a new walk form, we should switch to edit mode right away
     if @options.isNewWalk
+      $('.editButtonContainer').hide()
       @initGeocoder()
       @setEditMode(true)
 
@@ -155,6 +156,7 @@ class window.SanpoMap
           + "<input type='hidden' id='walk_waypoints_attributes_#{index}_longitude' name='walk[waypoints_attributes][#{index}][longitude]' value='#{vertex.lng()}' />" \
           + "<input type='hidden' id='walk_waypoints_attributes_#{index}_step_num' name='walk[waypoints_attributes][#{index}][step_num]' value='#{index}' />"
         )
+      return 1
     else if @walkChanged
       # console.log "Updating a walk: sending an ajax update request"
       waypoints_to_save = []
@@ -172,10 +174,13 @@ class window.SanpoMap
           success: (data) ->
             console.log "Route saved"
         )
+        return 1
       else
         console.log "This shouldn't happen: want to update a walk's waypoints, but don't have a walkId"
+        return -1
     else
       console.log "No changes!"
+      return 0
 
   zoomAndCenterMapToFitPath: ->
     bounds = new google.maps.LatLngBounds()

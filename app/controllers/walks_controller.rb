@@ -19,8 +19,10 @@ class WalksController < ApplicationController
   def create
     @walk = Walk.create(params[:walk])
     @walk.user = current_user
-    @walk.save
+    @walk.save!
     redirect_to @walk
+  rescue ActiveRecord::RecordInvalid
+    render :action => :new, :layout => "fullwidth"
   end
 
   def update_waypoints
