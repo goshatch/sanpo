@@ -1,3 +1,4 @@
+- content_for :title do t("general.titles.walk.show", {:walk_title => @walk.title}) end
 - content_for :body_class do "show_walk" end
 - content_for :head do
   %script{:type => "text/javascript", :src => "//maps.googleapis.com/maps/api/js?sensor=false"}

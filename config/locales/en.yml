@@ -10,9 +10,14 @@ en:
         notes: "Photographer's notes: what gear to bring? where's a good place to eat? etc..."
         link: "Link to a related album on Flickr, Facebook, etc."
   general:
-    title: "SANPO: Social Photowalks"
+    title: "SANPO — Social Photowalks"
+    titles:
+      walk:
+        show: "%{walk_title}: a photowalk on "
+        new: "Submit a new photowalk on "
     time_ago: "%{time} ago"
     save: "Save"
+    stats: "Currently: %{walks} walks, %{photos} photos, %{users} photographers!"
     disable_with:
       uploading: "Uploading..."
       saving: "Saving..."

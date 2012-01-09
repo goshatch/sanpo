@@ -1,6 +1,8 @@
 / サンポｷﾀ━━━━━━(ﾟ∀ﾟ)━━━━━━ !!!!!
+:ruby
+  custom_title = yield :title
 %head
-  %title= "SANPO: Social Photowalks"
+  %title= custom_title.empty? ? t("general.title") : "#{custom_title} #{t('general.title')}"
   = yield :pre_head
   = stylesheet_link_tag "application"
   = javascript_include_tag "application"

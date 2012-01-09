@@ -2,7 +2,6 @@
   .container
     %p.pull-right
       = render :partial => 'shared/social'
-    %p
-      = t('general.title')
-      %br
-      = t('footer.copyright').html_safe
+    .title= t('general.title')
+    .usageStats= usage_stats
+    .copyright= t('footer.copyright').html_safe
