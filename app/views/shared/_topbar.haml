@@ -4,8 +4,8 @@
       = link_to(image_tag("logo.png"), root_path, {:class => "brand"})
       - if user_signed_in?
         %ul.nav
-          %li= link_to(t("top.navigation.walks.recent"), root_path)
-          %li= link_to(t("top.navigation.walks.new"), new_walk_path)
+          %li{:class => (controller.controller_name == "walks" and controller.action_name == "index") ? "active" : "" }= link_to(t("top.navigation.walks.recent"), root_path)
+          %li{:class => (controller.controller_name == "walks" and controller.action_name == "new") ? "active" : "" }= link_to(t("top.navigation.walks.new"), new_walk_path)
       %ul.nav.secondary-nav
         - if user_signed_in?
           %li.dropdown{:data => {:dropdown => "dropdown"}}
