@@ -1,4 +1,8 @@
 #map_container
+  #mapSearchField.hidden
+    %form#mapLocationSearchForm
+      %input.span5.searchField{:type => "search"}
+      %input.btn.primary.submitButton{:type => "submit", :value => "Search"}
   #map_canvas
   - if @walk.user == current_user
     #map_controls

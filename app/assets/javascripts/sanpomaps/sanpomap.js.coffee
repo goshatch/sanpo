@@ -61,6 +61,7 @@ class window.SanpoMap
 
     # If this is a new walk form, we should switch to edit mode right away
     if @options.isNewWalk
+      @initGeocoder()
       @setEditMode(true)
 
     # Handle clicks on the edit button
@@ -68,6 +69,28 @@ class window.SanpoMap
       @toggleEditMode()
       event.stopPropagation()
       event.preventDefault()
+
+  # Setup the search field so that the user can focus the map on desired location
+  initGeocoder: =>
+    @geocoder = new google.maps.Geocoder();
+
+    $("#mapSearchField").removeClass("hidden")
+    $("#mapLocationSearchForm").submit (event) =>
+      @processGeocoding()
+      event.stopPropagation()
+      event.preventDefault()
+
+  processGeocoding: =>
+    address = $("#mapLocationSearchForm .searchField").val()
+    @geocoder.geocode((
+        address: address
+      ), (results, status) =>
+        if status == google.maps.GeocoderStatus.OK
+          @map.setCenter(results[0].geometry.location)
+          @map.setZoom(15)
+        else
+          alert("Couldn't locate that place: " + status);
+    )
 
   mapClickHandler: (event) =>
     @addLatLngToPath(event.latLng)

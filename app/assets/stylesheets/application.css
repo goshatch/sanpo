@@ -28,3 +28,7 @@
 .footer .usageStats {
   font-size: 11px;
 }
+
+.hidden {
+  display: none;
+}

@@ -92,6 +92,22 @@
   $containerBackground: rgba(128, 128, 128, 0.5);
   $containerEditModeBackground: rgba(255, 128, 128, 0.8);
 
+  #mapSearchField {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #fff;
+    @include box-shadow;
+    position: absolute;
+    top: 50px;
+    right: 0px;
+    z-index: 100;
+    form {
+      padding: 5px;
+      margin-bottom: 0;
+    }
+  }
+
   #map_container {
     position: relative;
     margin-bottom: 10px;
@@ -121,7 +137,6 @@
           text-align: center;
         }
       }
-      .searchField { display: none; }
     }
   }
   #map_container.editMode {
