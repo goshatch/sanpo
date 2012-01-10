@@ -51,3 +51,7 @@ group :test do
   gem 'capybara-webkit'
   gem 'headless'
 end
+
+group :production do
+  gem 'mysql2'
+end

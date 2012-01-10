@@ -4,9 +4,7 @@
 $ ->
   $('form#new_walk').submit (event) ->
     success = map.saveUpdatedPath()
-    if success == 1
-      console.log('successsss!')
-    else
-      console.log('frownyface')
+    if success != 1
       event.stopPropagation()
       event.preventDefault()
+      console.log "Failed to save route"
