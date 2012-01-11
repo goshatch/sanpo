@@ -1,3 +1,8 @@
+$:.unshift(File.expand_path('./lib', ENV['rvm_path']))  # Add RVM's lib directory to the load path.
+require "rvm/capistrano"                                # Load RVM's capistrano plugin.
+set :rvm_ruby_string, 'ruby-1.9.2-p290@sanpo'           # Or whatever env you want it to run in.
+set :rvm_type, :user  # Copy the exact line. I really mean :user here
+
 require "bundler/capistrano"
 
 set :application, "sanpo.cc"
@@ -5,12 +10,13 @@ set :repository,  "git@github.com:gueorgui/sanpo.git"
 set :scm, :git
 set :branch, "master"
 set :deploy_via, :remote_cache
+set :normalize_asset_timestamps, false
 
 ssh_options[:forward_agent] = true
 
-role :web, "dev.sanpo.cc"                          # Your HTTP server, Apache/etc
-role :app, "dev.sanpo.cc"                          # This may be the same as your `Web` server
-role :db,  "dev.sanpo.cc", :primary => true       # This is where Rails migrations will run
+role :web, "sanpo.cc"                          # Your HTTP server, Apache/etc
+role :app, "sanpo.cc"                          # This may be the same as your `Web` server
+role :db,  "sanpo.cc", :primary => true       # This is where Rails migrations will run
 
 set :user, "sanpo"
 set :use_sudo, false
