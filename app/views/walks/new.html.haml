@@ -63,5 +63,5 @@
               = f.text_field :link, :class => "xlarge"
           #waypoints_container
           .actions
-            = f.submit :class => "btn large primary", :value => t("general.save"), :disable_with => t("general.disable_with.saving")
+            = f.submit :id => "newWalkSubmit", :class => "btn large primary", :value => t("general.save"), :disabled => true, :disable_with => t("general.disable_with.saving")
 

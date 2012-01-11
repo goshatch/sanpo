@@ -93,8 +93,11 @@ class window.SanpoMap
           alert("Couldn't locate that place: " + status);
     )
 
+  # If we're creating a new walk, enable the save button if there are at least 2 waypoints
   mapClickHandler: (event) =>
     @addLatLngToPath(event.latLng)
+    if @poly.getPath().getLength() >= 2
+      $('#newWalkSubmit:disabled').removeAttr("disabled")
 
   # Add a vertex to the polyline. If we're in edit mode, also add the draggable handler
   addLatLngToPath: (latLng) ->
