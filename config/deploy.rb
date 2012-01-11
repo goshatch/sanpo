@@ -3,6 +3,7 @@ require "rvm/capistrano"                                # Load RVM's capistrano 
 set :rvm_ruby_string, 'ruby-1.9.2-p290@sanpo'           # Or whatever env you want it to run in.
 set :rvm_type, :user  # Copy the exact line. I really mean :user here
 
+set :bundle_roles, [:app]
 require "bundler/capistrano"
 
 set :application, "sanpo.cc"
@@ -35,6 +36,7 @@ namespace :deploy do
   task :symlink_shared do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
     run "ln -nfs #{shared_path}/photos #{current_release}/public/system"
+#    run "cd #{current_release} && bundle exec rake assets:precompile"
   end
 end
 
