@@ -145,3 +145,22 @@
     }
   }
 }
+
+.homePage {
+  margin-top: 20px;
+  .welcome {
+    p {
+      font-size: 16px;
+      line-height: 24px;
+    }
+    border-radius: 5px;
+  }
+  .createAccountButton {
+    margin-top: 10px;
+    a {
+      display: block;
+      text-align: center;
+      font-size: 22px;
+    }
+  }
+}

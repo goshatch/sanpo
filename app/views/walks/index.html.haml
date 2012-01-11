@@ -1,7 +1,21 @@
-.row
-  .span16
-    .page-header
-      %h1= t("walks.index.latest_walks")
+.row.homePage
+  .span8
+    %h1 Welcome, photographer!
+    .highlight.welcome
+      %p SANPO is a place to share photowalk itineraries. Draw your itinerary on a map, write about your walk, upload a couple of pictures, and you're all set!
+      %p
+        %span{:style => "color: red; font-weight: bold;"}ALPHA ALERT!
+        This is the very very very first public release of SANPO! Things WILL break!
+      %p
+        Read the
+        %a{:href => "#"}blog post
+        to find out more about SANPO, or
+        %a{:href => "http://twitter.com/sanpoapp"} follow SANPO on Twitter!
+    - unless current_user
+      .createAccountButton
+        = link_to "Create an account!", new_user_registration_path, :class => "btn success large"
+  .span8
+    %h2= t("walks.index.latest_walks")
     - if @walks
       %ul.walks.list
         - @walks.each do |walk|
