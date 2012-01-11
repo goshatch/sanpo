@@ -32,6 +32,7 @@ en:
         edit: "Edit my account"
         sign_out: "Sign out"
         sign_in: "Sign in"
+        sign_up: "Create an account"
   footer:
     copyright: "© 2012, by <a href='http://twitter.com/gueorgui'>@gueorgui</a>"
     social:

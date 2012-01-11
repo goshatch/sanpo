@@ -1,0 +1,18 @@
+%h2 Sign in
+
+= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+  .errors= devise_error_messages!
+  = field_set_tag do
+    .clearfix
+      = f.label :login
+      .input= f.text_field :login
+    .clearfix
+      = f.label :password
+      .input= f.password_field :password
+    - if devise_mapping.rememberable?
+      .clearfix
+        = f.label :remember_me
+        .input= f.check_box :remember_me
+    .actions
+      = f.submit "Sign in", :class => "btn primary"
+= render :partial => "devise/shared/links"
