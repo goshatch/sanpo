@@ -369,3 +369,5 @@ class window.SanpoMap
 
     this.self.walkChanged = true
     this.self.updateVertexIcons()
+    if polyline.getPath().getLength() < 2
+      $('#newWalkSubmit').attr("disabled", "disabled")
