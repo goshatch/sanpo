@@ -2,8 +2,6 @@
 - content_for :description do "[by #{@walk.user.username}] #{@walk.description}" end
 - content_for :body_class do "show_walk" end
 - content_for :head do
-  %script{:type => "text/javascript", :src => "//maps.googleapis.com/maps/api/js?sensor=false"}
-  = javascript_include_tag('sanpomaps/sanpomap')
   :erb
     <script>
       var map = null;
