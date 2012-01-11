@@ -1,5 +1,5 @@
 = link_to(photo.image.url(:large)) do
   .photo{:id => "photo_#{photo.id}"}
-    - if current_user and photo.user.id == current_user.id
+    - if current_user and photo.walk.user.id == current_user.id
       = link_to(t("photos.destroy.delete_this_photo"), walk_photo_path(photo.walk, photo), :class => "controls", :method => :delete, :confirm => t("photos.destroy.confirmation"), :remote => true)
     = image_tag(photo.image.url(:large))
