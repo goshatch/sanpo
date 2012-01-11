@@ -33,7 +33,7 @@
         %h2
           Photos (#{@walk.photos.count}/3)
           - if current_user and current_user == @walk.user and @walk.photos.count < 3
-            %small= link_to t("photos.new.upload_new_photo"), new_walk_photo_path(@walk), :class => "btn small"
+            %small= link_to t("photos.new.upload_new_photo"), new_walk_photo_path(@walk), :class => "btn small", :id => "walkPageUploadPhotoButton"
         - if @walk.photos
           - @walk.photos.each do |photo|
             = render :partial => "photos/photo", :locals => {:photo => photo}
@@ -43,4 +43,4 @@
         %p= @walk.notes
       .walk_link
         - unless @walk.link.empty?
-          %h2.btn.large= link_to(t("walks.show.link_label"), @walk.link)
+          %h2.btn.large= link_to(t("walks.show.link_label"), @walk.link, :id => "walkPageGalleryButton")

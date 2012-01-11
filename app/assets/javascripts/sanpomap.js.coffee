@@ -110,6 +110,7 @@ class window.SanpoMap
     # console.log "path: #{path.b.toString()}"
 
   toggleEditMode: ->
+    _gaq.push(['_trackEvent', 'SanpoMap', 'Edit mode toggled'])
     @setEditMode(!@editMode)
 
   # Check if we're not going into edit mode twice by mistake
@@ -159,6 +160,7 @@ class window.SanpoMap
           + "<input type='hidden' id='walk_waypoints_attributes_#{index}_longitude' name='walk[waypoints_attributes][#{index}][longitude]' value='#{vertex.lng()}' />" \
           + "<input type='hidden' id='walk_waypoints_attributes_#{index}_step_num' name='walk[waypoints_attributes][#{index}][step_num]' value='#{index}' />"
         )
+      _gaq.push(['_trackEvent', 'SanpoMap', 'Creating a new walk'])
       return 1
     else if @walkChanged
       # console.log "Updating a walk: sending an ajax update request"
@@ -177,11 +179,13 @@ class window.SanpoMap
           success: (data) ->
             console.log "Route saved"
         )
+        _gaq.push(['_trackEvent', 'SanpoMap', 'Updating an existing walk'])
         return 1
       else
         console.log "This shouldn't happen: want to update a walk's waypoints, but don't have a walkId"
         return -1
     else
+      _gaq.push(['_trackEvent', 'SanpoMap', 'No changes to a walk'])
       console.log "No changes!"
       return 0
 

@@ -8,3 +8,37 @@
 //= require jquery_ujs
 //= require_tree .
 $('.topbar').dropdown();
+
+$('.topbar .brand').click(function(event) {
+  _gaq.push(['_trackEvent', 'TopNavigation', 'logo clicked'])
+});
+$('.topbar .registrationLink a').click(function(event) {
+  _gaq.push(['_trackEvent', 'TopNavigation', 'registration link clicked'])
+});
+$('.topbar .signinLink a').click(function(event) {
+  _gaq.push(['_trackEvent', 'TopNavigation', 'signin link clicked'])
+});
+$('.topbar .accountDropdownToggle').click(function(event) {
+  _gaq.push(['_trackEvent', 'TopNavigation', 'account dropdown toggled'])
+});
+$('.topbar .editAccountLink a').click(function(event) {
+  _gaq.push(['_trackEvent', 'TopNavigation', 'edit account link toggled'])
+});
+$('.topbar .signoutLink a').click(function(event) {
+  _gaq.push(['_trackEvent', 'TopNavigation', 'sign out link clicked'])
+});
+$('.topbar .recentWalksLink a').click(function(event) {
+  _gaq.push(['_trackEvent', 'TopNavigation', 'recent walks button clicked'])
+});
+$('.topbar .newWalkLink a').click(function(event) {
+  _gaq.push(['_trackEvent', 'TopNavigation', 'new walk link clicked'])
+});
+$('#walkPageUploadPhotoButton').click(function(event) {
+  _gaq.push(['_trackEvent', 'WalkPage', 'upload photo button clicked'])
+});
+$('#walkPageGalleryButton').click(function(event) {
+  _gaq.push(['_trackEvent', 'WalkPage', 'gallery button clicked'])
+});
+$('#mapLocationSearchForm').submit(function(event) {
+  _gaq.push(['_trackEvent', 'WalkPage', 'new walk: geocoding form submitted'])
+});

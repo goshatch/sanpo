@@ -8,7 +8,7 @@
         This is the very very very first public release of SANPO! Things WILL break!
       %p
         Read the
-        %a{:href => "#"}blog post
+        %a{:href => "http://blog.sanpo.cc/post/15674586303/hello"}blog post
         to find out more about SANPO, or
         %a{:href => "http://twitter.com/sanpoapp"} follow SANPO on Twitter!
     - unless current_user
@@ -19,9 +19,15 @@
     - if @walks
       %ul.walks.list
         - @walks.each do |walk|
-          %li
+          %li{:id => "walk#{walk.id}"}
             = link_to walk_path(walk) do
               %h3= walk.title
               .meta_date= t("general.time_ago", :time => time_ago_in_words(walk.created_at))
               .user_info= t("user.by", :name => walk.user.username)
-
+:javascript
+  $('.createAccountButton a').click(function(event) {
+    _gaq.push(['_trackEvent', 'Big homepage signup button', 'clicked'])
+  });
+  $('.walks.list li').click(function(event) {
+    _gaq.push(['_trackEvent', 'Homepage walk list', 'clicked', $(this).attr("id")])
+  });
