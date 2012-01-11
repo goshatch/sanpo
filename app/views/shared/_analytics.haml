@@ -10,6 +10,8 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 :erb
+  <% if current_user %>
   <script>
     _gaq.push(['_setCustomVar', 1, 'SignupMonth', '<%= current_user.created_at.strftime("%Y%m") %>', 1]);
   </script>
+  <% end -%>
