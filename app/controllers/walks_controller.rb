@@ -47,4 +47,11 @@ class WalksController < ApplicationController
     raise "Permission denied" unless @walk.user == current_user
   end
 
+  def destroy
+    @walk = Walk.find(params[:id])
+    raise "Permission denied" unless @walk.user == current_user
+    @walk.destroy
+    redirect_to walks_path
+  end
+
 end
