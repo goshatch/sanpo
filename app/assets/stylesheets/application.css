@@ -29,6 +29,10 @@
   font-size: 11px;
 }
 
+.footer .twitter-follow-button {
+  margin-left: 10px;
+}
+
 .hidden {
   display: none;
 }

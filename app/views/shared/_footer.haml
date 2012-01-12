@@ -1,9 +1,11 @@
 %footer.footer
   .container
-    %p.pull-right{:style => "text-align :right;"}
+    .row
+      .span12
+        .title
+          = t('general.title')
+          %br
+          %a{:href => "http://blog.sanpo.cc"} Photowalkin', the SANPO blog
+        .usageStats= usage_stats
+        .copyright= t('footer.copyright').html_safe
       = render :partial => 'shared/social'
-      %br
-      %a{:href => "http://blog.sanpo.cc"} Photowalkin', the SANPO blog
-    .title= t('general.title')
-    .usageStats= usage_stats
-    .copyright= t('footer.copyright').html_safe
