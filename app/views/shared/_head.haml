@@ -6,6 +6,7 @@
   %title= custom_title.empty? ? t("general.title") : "#{custom_title} #{t('general.title')}"
   %meta{:name => "keywords", :content => "photowalk, photowalks, camera walk, photography, フォトワークス, カメラワーク, 写真, tokyo, 東京"}
   %meta{:name => "description", :content => custom_description.empty? ? t("general.default_description") : custom_description}
+  %meta{:property => "fb:app_id", :content => "268824606515678"}
   = yield :pre_head
   = stylesheet_link_tag "application"
   = javascript_include_tag "//maps.googleapis.com/maps/api/js?sensor=false"
