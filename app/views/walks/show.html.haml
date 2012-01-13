@@ -2,6 +2,8 @@
 - content_for :description do "[by #{@walk.user.username}] #{@walk.description}" end
 - content_for :body_class do "show_walk" end
 - content_for :head do
+  - if @walk.photos.count >= 1
+    %meta{:property => "og:tag name", :content => "#{root_url}#{@walk.photos.first.image.url(:medium).gsub(/^\//, '')}"}
   :erb
     <script>
       var map = null;
@@ -35,7 +37,7 @@
         %p= @walk.description
       .walk_photos
         %h2
-          Photos (#{@walk.photos.count}/3)
+          Photos (#{@walk.photos.count})
           - if current_user and current_user == @walk.user and @walk.photos.count < 3
             %small= link_to t("photos.new.upload_new_photo"), new_walk_photo_path(@walk), :class => "btn small", :id => "walkPageUploadPhotoButton"
         - if @walk.photos
