@@ -52,7 +52,7 @@
       .social
         .twitter
           %a{:href => "https://twitter.com/share", :class => "twitter-share-button", :data => {:via => "sanpoapp", :related => "sanpoapp"}} Tweet
-        .fb-like{:data => {:send => "false", "show-faces" => "false"}}
+        .fb-like{:data => {:send => "false", "show-faces" => "false", :width => "300"}}
       .walk_link
         - unless @walk.link.empty?
           %h2.btn.large= link_to(t("walks.show.link_label"), @walk.link, :id => "walkPageGalleryButton")
