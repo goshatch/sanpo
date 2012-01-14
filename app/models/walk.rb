@@ -16,4 +16,12 @@ class Walk < ActiveRecord::Base
     target_longitude = (start.longitude + goal.longitude) / 2
     {:latitude => target_latitude, :longitude => target_longitude}
   end
+
+  def formatted_description
+    description.gsub(/\n/, '<br/>')
+  end
+
+  def formatted_notes
+    notes.gsub(/\n/, '<br/>')
+  end
 end

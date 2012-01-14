@@ -40,3 +40,7 @@
   background-color: #FEE9CC;
   padding: 5px 10px;
 }
+
+.best_in_place:hover {
+  background-color: #FFFFD3;
+}

@@ -1,5 +1,6 @@
 class WalksController < ApplicationController
-  before_filter :authenticate_user!, :only => [:new, :create, :edit, :update_waypoints]
+  before_filter :authenticate_user!, :only => [:new, :create, :edit, :update_waypoints, :update]
+  respond_to :html, :json
 
   def index
     @walks = Walk.find(:all).reverse
@@ -40,6 +41,13 @@ class WalksController < ApplicationController
       end
       @walk.save
     end
+  end
+
+  def update
+    @walk = Walk.find(params[:id])
+    raise "Permission denied" unless @walk.user == current_user
+    @walk.update_attributes(params[:walk])
+    respond_with @user
   end
 
   def edit
