@@ -34,7 +34,10 @@
     .span-two-thirds
       .walk_description
         %h2= t("walks.show.description")
-        %p= best_in_place_if((@walk.user == current_user), @walk, :description, :type => :textarea, :display_as => :formatted_description)
+        - if @walk.user == current_user
+          %p= best_in_place(@walk, :description, :type => :textarea, :display_as => :formatted_description)
+        - else
+          %p= h(@walk.description).gsub(/\n/, '<br/>')
       .walk_photos
         %h2
           Photos (#{@walk.photos.count})
@@ -48,7 +51,10 @@
     .span-one-third
       .walk_notes
         %h2= t("walks.show.notes")
-        %p= best_in_place_if((@walk.user == current_user), @walk, :notes, :type => :textarea, :display_as => :formatted_notes)
+        - if @walk.user == current_user
+          %p= best_in_place(@walk, :notes, :type => :textarea, :display_as => :formatted_notes)
+        - else
+          %p= h(@walk.notes).gsub(/\n/, '<br/>')
       .social
         .twitter
           %a{:href => "https://twitter.com/share", :class => "twitter-share-button", :data => {:via => "sanpoapp", :related => "sanpoapp"}} Tweet
