@@ -3,9 +3,10 @@
     .row
       .span10
         .title
-          = t('general.title')
+          = t('footer.title').html_safe
+        .usageStats
+          = usage_stats
           %br
-          %a{:href => "http://blog.sanpo.cc"} Photowalkin', the SANPO blog
-        .usageStats= usage_stats
+          = link_to('Project to-do list', 'https://www.pivotaltracker.com/projects/405989', :target => '_blank')
         .copyright= t('footer.copyright').html_safe
       = render :partial => 'shared/social'

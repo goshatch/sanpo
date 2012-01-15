@@ -5,13 +5,51 @@
  *= require_self
  *= require_tree .
 */
+body {
+  background-color: #E6EBEA;
+}
+
+.homePanel {
+  position: relative;
+  text-align: center;
+}
+
+.homePanel .number { position: absolute; top: 10px; left: 0; }
+.homePanel .description {
+  background-color: #fff;
+  padding: 10px;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  margin: 20px;
+  border: 1px dashed #ccc;
+}
+
+.roundedCorners {
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -o-border-radius: 10px;
+  -ie-border-radius: 10px;
+}
+
+.whitebg {
+  background-color: #fff;
+}
+
+.alignRight {
+  text-align: right;
+}
+
+.padding10 {
+  padding: 10px;
+}
 
 .content {
   padding-top: 33px;
 }
 
 .footer {
-  background-color: #eee;
   padding: 30px 0;
   text-shadow: 0 1px 0 white;
   border-top: 1px solid #E5E5E5;
@@ -20,12 +58,12 @@
 }
 
 .footer .copyright {
-  font-size: 11px;
+  font-size: 13px;
   margin-top: 5px;
 }
 
 .footer .usageStats {
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .footer .twitter-follow-button {

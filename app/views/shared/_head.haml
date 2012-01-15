@@ -11,5 +11,8 @@
   = stylesheet_link_tag "application"
   = javascript_include_tag "//maps.googleapis.com/maps/api/js?sensor=false"
   = javascript_include_tag "application"
+  %script{:type => "text/javascript", :src => "http://use.typekit.com/gqt1yjw.js"}
+  :javascript
+    try{Typekit.load();}catch(e){}
   = csrf_meta_tags
   = yield :head

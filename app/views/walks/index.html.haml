@@ -1,32 +1,20 @@
 .row.homePage
   .span8
-    %h1 Welcome, photographer!
-    .highlight.welcome
-      %p SANPO is a place to share photowalk itineraries. Draw your itinerary on a map, write about your walk, upload a couple of pictures, and you're all set!
-      %p
-        %span{:style => "color: red; font-weight: bold;"}ALPHA ALERT!
-        This is the very very very first public release of SANPO! Things WILL break!
-      %p
-        Read the
-        %a{:href => "http://blog.sanpo.cc/"}blog
-        to find out more about SANPO, or
-        %a{:href => "http://twitter.com/sanpoapp"} follow SANPO on Twitter!
-    - unless current_user
-      .createAccountButton
-        = link_to "Create an account!", new_user_registration_path, :class => "btn success large"
+    =render :partial => 'not_logged_in'
   .span8
-    %h2= t("walks.index.latest_walks")
-    - if @walks
-      %ul.walks.list
-        - @walks.each do |walk|
-          %li{:id => "walk#{walk.id}"}
-            = link_to walk_path(walk) do
-              %h3= walk.title
-              .meta_date= t("general.time_ago", :time => time_ago_in_words(walk.created_at))
-              .user_info= t("user.by", :name => walk.user.username)
+    .row
+      %h6.span4
+        = t("walks.index.latest_walks")
+      .span4.alignRight.frontPageSmallNewWalkButton
+        = link_to("Share a new walk", new_walk_path, :class => "btn small info")
+    = render :partial => "list", :locals => {:walks => @walks}
+
 :javascript
   $('.createAccountButton a').click(function(event) {
     _gaq.push(['_trackEvent', 'Big homepage signup button', 'clicked'])
+  });
+  $('.frontPageSmallNewWalkButton a').click(function(event) {
+    _gaq.push(['_trackEvent', 'Homepage walk list new walk button', 'clicked'])
   });
   $('.walks.list li').click(function(event) {
     _gaq.push(['_trackEvent', 'Homepage walk list', 'clicked', $(this).attr("id")])

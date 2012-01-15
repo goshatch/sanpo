@@ -4,20 +4,25 @@
 
 .walks.list {
   border-top: 1px solid #eee;
+  background-color: #fff;
   list-style: none;
   margin: 0 0 25px 0;
   li {
     position: relative;
-    padding: 10px 0;
     border-bottom: 1px solid #eee;
+    a {
+      display: block;
+      padding: 10px 10px 10px 84px;
+      min-height: 64px;
+    }
     h3 { line-height: 1.5em; }
     a:hover {
       text-decoration: none;
     }
-    .user_info {
+    img {
       position: absolute;
-      right: 0px;
-      top: 10px
+      top: 10px;
+      left: 10px;
     }
   }
   li:hover {
@@ -49,7 +54,7 @@
       position: relative;
       .walkCreator {
         @include box-shadow;
-        font-size: 12px;
+        font-size: 15px;
         font-weight: normal;
         line-height: 18px;
         position: absolute;
@@ -155,6 +160,7 @@
 
 .homePage {
   margin-top: 20px;
+  margin-bottom: 20px;
   .welcome {
     p {
       font-size: 16px;
@@ -163,11 +169,11 @@
     border-radius: 5px;
   }
   .createAccountButton {
-    margin-top: 10px;
     a {
       display: block;
       text-align: center;
-      font-size: 22px;
+      font-size: 20px;
+      margin: 10px 20px;
     }
   }
 }

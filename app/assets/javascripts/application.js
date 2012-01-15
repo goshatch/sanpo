@@ -35,6 +35,9 @@ $('.topbar .recentWalksLink a').click(function(event) {
 $('.topbar .newWalkLink a').click(function(event) {
   _gaq.push(['_trackEvent', 'TopNavigation', 'new walk link clicked'])
 });
+$('.topbar .blogLink a').click(function(event) {
+  _gaq.push(['_trackEvent', 'TopNavigation', 'blog link clicked'])
+});
 $('#walkPageUploadPhotoButton').click(function(event) {
   _gaq.push(['_trackEvent', 'WalkPage', 'upload photo button clicked'])
 });

@@ -1,0 +1,21 @@
+%h6= t('walks.index.what_is_sanpo')
+.row
+  .span4.homePanel.panel1
+    =image_tag('frontpageillustration1.png')
+    .number
+      =image_tag('frontpageillustration_number1.png')
+    .description.roundedCorners= t('walks.index.not_logged_in.illustration.step1.description')
+  .span4.homePanel.panel2
+    =image_tag('frontpageillustration2.png')
+    .number
+      =image_tag('frontpageillustration_number2.png')
+    .description.roundedCorners= t('walks.index.not_logged_in.illustration.step2.description')
+.row
+  .span8.createAccountButton
+    :ruby
+      if current_user
+        link_text = t("walks.index.share_a_new_walk")
+      else
+        link_text = t("walks.index.not_logged_in.call_to_action_button")
+      end
+    =link_to(link_text, new_walk_path, :class => "btn info large")

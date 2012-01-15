@@ -1,0 +1,13 @@
+- if defined?(only)
+  - walks = walks[0..(only-1)]
+- if walks
+  %ul.walks.list
+    - walks.each do |walk|
+      %li{:id => "walk#{walk.id}"}
+        = link_to walk_path(walk) do
+          %h3= walk.title
+          - if walk.photos.count >= 1
+            =image_tag walk.photos.first.image.url(:thumb)
+          .meta_date
+            = t("general.time_ago", :time => time_ago_in_words(walk.created_at))
+            %span.user_info= t("user.by", :name => walk.user.username)

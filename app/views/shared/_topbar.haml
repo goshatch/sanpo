@@ -7,6 +7,7 @@
           %li{:class => (controller.controller_name == "walks" and controller.action_name == "index") ? "active recentWalksLink" : "recentWalksLink" }= link_to(t("top.navigation.walks.recent"), root_path)
           %li{:class => (controller.controller_name == "walks" and controller.action_name == "new") ? "active newWalkLink" : "newWalkLink" }= link_to(t("top.navigation.walks.new"), new_walk_path)
       %ul.nav.secondary-nav
+        %li.blogLink= link_to(t("top.navigation.blog"), "http://blog.sanpo.cc")
         - if user_signed_in?
           %li.dropdown{:data => {:dropdown => "dropdown"}}
             = link_to(current_user.email, "#", {:class => "dropdown-toggle accountDropdownToggle"})
