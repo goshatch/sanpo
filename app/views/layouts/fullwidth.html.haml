@@ -4,10 +4,10 @@
   %body{:class => "full_width #{yield :body_class}"}
     = render :partial => "shared/topbar"
     .content
-        - if notice
-          .alert-message.success= notice
-        - if alert
-          .alert-message.warning= alert
+      - if notice
+        .alert-message.success= notice
+      - if alert
+        .alert-message.warning= alert
       = yield
     = render :partial => 'shared/footer'
     = render :partial => 'shared/analytics'
