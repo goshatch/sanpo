@@ -7,6 +7,9 @@ class WalksController < ApplicationController
   end
 
   def show
+    if params[:n] == "yes"
+      @new_walk = true
+    end
     @walk = Walk.find(params[:id])
     render :layout => 'fullwidth'
   end
@@ -21,7 +24,7 @@ class WalksController < ApplicationController
     @walk = Walk.create(params[:walk])
     @walk.user = current_user
     @walk.save!
-    redirect_to @walk
+    redirect_to({:action => :show, :id => @walk.id, :n => "yes"})
   rescue ActiveRecord::RecordInvalid
     render :action => :new, :layout => "fullwidth"
   end

@@ -5,8 +5,10 @@
     = render :partial => "shared/topbar"
     %section.container
       .content
-        %p.notice= notice
-        %p.alert= alert
+        - if notice
+          .alert-message.success= notice
+        - if alert
+          .alert-message.warning= alert
         = yield
     = render :partial => "shared/footer"
     = render :partial => 'shared/analytics'

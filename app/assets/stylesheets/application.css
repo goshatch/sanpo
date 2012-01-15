@@ -66,6 +66,11 @@ body {
   font-size: 13px;
 }
 
+.footer .madeintokyo {
+  font-size: 13px;
+  color: #999;
+}
+
 .footer .twitter-follow-button {
   margin-bottom: 7px;
 }
@@ -81,4 +86,8 @@ body {
 
 .best_in_place:hover {
   background-color: #FFFFD3;
+}
+
+.alert-message {
+  margin-top: 15px;
 }

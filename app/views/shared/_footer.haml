@@ -8,5 +8,7 @@
           = usage_stats
           %br
           = link_to('Project to-do list', 'https://www.pivotaltracker.com/projects/405989', :target => '_blank')
-        .copyright= t('footer.copyright').html_safe
+        .copyright
+          = t('footer.copyright').html_safe
+          %span.madeintokyo Made in Tokyo.
       = render :partial => 'shared/social'

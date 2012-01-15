@@ -8,6 +8,8 @@
           %h3= walk.title
           - if walk.photos.count >= 1
             =image_tag walk.photos.first.image.url(:thumb)
+          - else
+            =image_tag "default_walk_thumbnail.jpg"
           .meta_date
             = t("general.time_ago", :time => time_ago_in_words(walk.created_at))
             %span.user_info= t("user.by", :name => walk.user.username)
