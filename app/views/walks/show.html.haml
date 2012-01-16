@@ -21,7 +21,9 @@
     </script>
 - if defined? @new_walk
   :javascript
-    _gaq.push(['_trackEvent', 'Goal tracking', 'Walk created', "#{@walk.id}"])
+    $(function(){
+      _gaq.push(['_trackEvent', 'Goal tracking', 'Walk created', "#{@walk.id}"]);
+    });
 .container
   .page-header
     %h1
