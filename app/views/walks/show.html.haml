@@ -19,6 +19,11 @@
         });
       });
     </script>
+  :javascript
+    var po = document.createElement('script');
+    po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
 - if defined? @new_walk
   :javascript
     _gaq.push(['_trackEvent', 'Goal tracking', 'Walk created', "#{@walk.id}"])
@@ -61,6 +66,7 @@
       .social
         .twitter
           %a{:href => "https://twitter.com/share", :class => "twitter-share-button", :data => {:via => "sanpoapp", :related => "sanpoapp"}} Tweet
+        .g-plusone{:data => {:size => "medium", :annotation => "inline", :width => "300"}}
         .fb-like{:data => {:send => "false", "show-faces" => "false", :width => "300"}}
       .walk_link
         - unless @walk.link.empty?
