@@ -54,6 +54,7 @@
       position: relative;
       .walkCreator {
         @include box-shadow;
+        white-space: nowrap;
         font-size: 15px;
         font-weight: normal;
         line-height: 18px;
