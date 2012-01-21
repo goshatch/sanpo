@@ -1,0 +1,8 @@
+= form_for(@comment, :url => walk_comments_path(@walk), :remote => true) do |f|
+  = f.hidden_field :walk_id
+  = f.hidden_field :user_id
+  .comment_text_container
+    Add your comment:
+    = f.text_area :text, :rows => 4
+  .comment_submit_container
+    = f.submit "Post", :disable_with => "Posting...", :class => "btn info"

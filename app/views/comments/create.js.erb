@@ -1,0 +1,3 @@
+$('.comments').append("<%= escape_javascript(render(@comment)) %>");
+$('#comment_text').val("").blur();
+_gaq.push(['_trackEvent', 'Goal tracking', 'Comment created', '<%= @comment.id %>']);

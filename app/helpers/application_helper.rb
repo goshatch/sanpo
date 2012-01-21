@@ -3,6 +3,7 @@ module ApplicationHelper
     users = User.count
     walks = Walk.count
     photos = Photo.count
-    t("general.stats", {:users => users, :walks => walks, :photos => photos})
+    comments = Comment.count
+    t("general.stats", {:users => users, :walks => walks, :photos => photos, :comments => comments})
   end
 end

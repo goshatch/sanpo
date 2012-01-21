@@ -1,3 +1,46 @@
 // Place all the styles related to the Comments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+form#new_comment {
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px dotted #ccc;
+}
+
+.comment_text_container {
+  margin-bottom: 10px;
+  textarea {
+    margin-top: 5px;
+    width: 600px;
+    padding: 10px;
+  }
+}
+
+.comment_submit_container {
+  width: 100%;
+  text-align: right;
+}
+
+.comment {
+  margin-top: 20px;
+  background-color: #fff;
+  padding: 10px 15px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  .meta {
+    margin-top: 5px;
+    font-size: 13px;
+    color: #999;
+    text-align: right;
+    text-shadow: 0 1px 0 white;
+  }
+  form {
+    display: block !important;
+    margin: none;
+    textarea {
+      width: 580px !important;
+    }
+  }
+}

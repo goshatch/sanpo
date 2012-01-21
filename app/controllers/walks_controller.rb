@@ -11,6 +11,11 @@ class WalksController < ApplicationController
       @new_walk = true
     end
     @walk = Walk.find(params[:id])
+    if current_user
+      @comment = Comment.new
+      @comment.walk = @walk
+      @comment.user = current_user
+    end
     render :layout => 'fullwidth'
   end
 
@@ -50,7 +55,7 @@ class WalksController < ApplicationController
     @walk = Walk.find(params[:id])
     raise "Permission denied" unless @walk.user == current_user
     @walk.update_attributes(params[:walk])
-    respond_with @user
+    respond_with_bip(@walk)
   end
 
   def edit

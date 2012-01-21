@@ -51,8 +51,11 @@
         - if @walk.photos
           - @walk.photos.each do |photo|
             = render :partial => "photos/photo", :locals => {:photo => photo}
-      -# .comments
-      -#   .fb-comments{:data => {:href => "#{request.url}", "num-posts" => "5", :width => "620"}}
+      .comments
+        - unless @walk.comments.empty?
+          - @walk.comments.each do |comment|
+            = render comment
+      = render :partial => 'comments/form'
     .span-one-third
       .walk_notes
         %h2= t("walks.show.notes")

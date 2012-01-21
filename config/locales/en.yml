@@ -18,7 +18,7 @@ en:
         new: "Submit a new photowalk on "
     time_ago: "%{time} ago"
     save: "Save"
-    stats: "Currently: %{walks} walks, %{photos} photos, %{users} photographers!"
+    stats: "Currently: %{walks} walks, %{photos} photos, %{comments} comments, %{users} photographers!"
     disable_with:
       uploading: "Uploading..."
       saving: "Saving..."

@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/bernat/best_in_place.git
+  revision: 47a908aa4f7bbe04e8439b84a7928ac88a3e6a35
+  specs:
+    best_in_place (1.0.4)
+      jquery-rails
+      rails (~> 3.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -34,9 +42,6 @@ GEM
     archive-tar-minitar (0.5.2)
     arel (2.2.1)
     bcrypt-ruby (3.0.1)
-    best_in_place (1.0.4)
-      jquery-rails
-      rails (~> 3.1.0)
     builder (3.0.0)
     capistrano (2.9.0)
       highline
@@ -220,7 +225,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  best_in_place
+  best_in_place!
   capistrano
   capybara
   capybara-webkit
