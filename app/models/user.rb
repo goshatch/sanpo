@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :walks, :dependent => :nullify
+  has_many :comments, :dependent => :nullify
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

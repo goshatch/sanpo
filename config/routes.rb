@@ -5,6 +5,7 @@ Sanpo::Application.routes.draw do
 
   resources :walks do
     resources :photos
+    resources :comments
   end
 
   match 'walks/:id/update_waypoints' => 'walks#update_waypoints'
