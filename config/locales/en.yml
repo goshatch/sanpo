@@ -71,3 +71,6 @@ en:
       attributes:
         user:
           login: "Username or email"
+  notifications:
+    new_comment_on_walk:
+      subject: "A new comment on your walk!"

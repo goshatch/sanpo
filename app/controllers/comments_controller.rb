@@ -1,6 +1,9 @@
 class CommentsController < ApplicationController
   def create
     @comment = Comment.create(params[:comment])
+    if @comment.user != @comment.walk.user and @comment.walk.user.mail_comment_notification
+      Comment.delay.send_notification(@comment.id)
+    end
   end
 
   def update

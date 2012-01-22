@@ -50,3 +50,9 @@ $('#mapLocationSearchForm').submit(function(event) {
 $('#mapLocationSearchForm').submit(function(event) {
   _gaq.push(['_trackEvent', 'Goal tracking', 'Account created']);
 });
+$('.commentFormSignInButton').click(function(event) {
+  _gaq.push(['_trackEvent', 'WalkPage', 'Comment sign in button clicked'])
+});
+$('.commentFormSignUpButton').click(function(event) {
+  _gaq.push(['_trackEvent', 'WalkPage', 'Comment sign up button clicked'])
+});

@@ -6,6 +6,9 @@ set :rvm_type, :user  # Copy the exact line. I really mean :user here
 set :bundle_roles, [:app]
 require "bundler/capistrano"
 
+require "delayed/recipes"
+set :rails_env, "production" # Added for delayed job
+
 set :application, "sanpo.cc"
 set :repository,  "git@github.com:gueorgui/sanpo.git"
 set :scm, :git
@@ -41,3 +44,9 @@ namespace :deploy do
 end
 
 after 'deploy:update_code', 'deploy:symlink_shared'
+
+# Delayed job
+before "deploy:restart", "delayed_job:stop"
+after  "deploy:restart", "delayed_job:start"
+after "deploy:stop",  "delayed_job:stop"
+after "deploy:start", "delayed_job:start"

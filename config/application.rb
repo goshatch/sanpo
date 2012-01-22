@@ -48,6 +48,9 @@ module Sanpo
     config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
 
+    config.action_mailer.delivery_method   = :postmark
+    config.action_mailer.postmark_settings = { :api_key => "da2423b4-7693-4271-95bb-c9b4569c3953" }
+
     # RSpec
     config.generators do |g|
       g.test_framework :rspec

@@ -1,8 +1,18 @@
-= form_for(@comment, :url => walk_comments_path(@walk), :remote => true) do |f|
-  = f.hidden_field :walk_id
-  = f.hidden_field :user_id
-  .comment_text_container
-    Add your comment:
-    = f.text_area :text, :rows => 4
-  .comment_submit_container
-    = f.submit "Post", :disable_with => "Posting...", :class => "btn info"
+- if current_user
+  = form_for(@comment, :url => walk_comments_path(@walk), :remote => true) do |f|
+    %a{:name => "commentform"}
+    = f.hidden_field :walk_id
+    = f.hidden_field :user_id
+    .comment_text_container
+      Add your comment:
+      = f.text_area :text, :rows => 4
+    .comment_submit_container
+      = f.submit "Post", :disable_with => "Posting...", :class => "btn info"
+- else
+  - session[:next] = "#{request.fullpath}#commentform"
+  .alert-message.block-message.warning
+    %p You need a SANPO user account to be able to comment. If you already have an account, please sign in. Otherwise, please join us :) You will be able to comment, but also to report your own photowalks.
+    .alert-actions.alignRight
+      = link_to "Sign in", new_user_session_path, :class => "small btn info commentFormSignInButton"
+      = link_to "Create an account", new_user_registration_path, :class => "small btn commentFormSignUpButton"
+

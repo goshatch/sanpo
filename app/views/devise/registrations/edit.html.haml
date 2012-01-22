@@ -4,24 +4,32 @@
   = field_set_tag do
     .clearfix
       = f.label :username
-      .input= resource.username
+      .input.profileUserName= resource.username
       = f.hidden_field :username
     .clearfix
       = f.label :email
       .input= f.email_field :email
     .clearfix
-      = f.label :password
-      .input= f.password_field :password
+      = f.label "E-mail notifications"
+      .input
+        %ul.inputs-list
+          %li
+            %label{:for => "user_mail_comment_notification"}
+              =f.check_box :mail_comment_notification
+              %span Notify me when someone posts a comment on one of my walks
     .clearfix
-      %i (leave blank if you don't want to change it)
+      = f.label :password
+      .input
+        = f.password_field :password
+        %span.help-block Leave blank if you don't want to change it
     .clearfix
       = f.label :password_confirmation
       .input= f.password_field :password_confirmation
     .clearfix
       = f.label :current_password
-      .input= f.password_field :current_password
-    .clearfix
-      %i (we need your current password to confirm your changes)
+      .input
+        = f.password_field :current_password
+        %span.help-block We need your current password to confirm your changes
     .actions
       = f.submit "Update", :class => "btn primary"
 %h3 Cancel my account

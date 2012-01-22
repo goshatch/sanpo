@@ -45,6 +45,15 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
+# Background jobs
+gem 'delayed_job_active_record'
+gem 'delayed_job_web'
+gem 'daemons'
+
+# Postmark
+gem 'postmark'
+gem 'postmark-rails', '0.4.0'
+
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false

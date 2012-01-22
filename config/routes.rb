@@ -9,6 +9,7 @@ Sanpo::Application.routes.draw do
   end
 
   match 'walks/:id/update_waypoints' => 'walks#update_waypoints'
+  match "/delayed_job" => DelayedJobWeb, :anchor => false
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
