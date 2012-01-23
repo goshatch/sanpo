@@ -27,6 +27,10 @@ class Walk < ActiveRecord::Base
   end
 
   def length_in_km
-    "About #{length/1000} km"
+    if length < 1000
+      "Less than 1 km"
+    else
+      "About #{length/1000} km"
+    end
   end
 end
