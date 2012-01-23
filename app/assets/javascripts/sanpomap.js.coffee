@@ -151,6 +151,8 @@ class window.SanpoMap
   # Save waypoints to the form (if new walk) or to the db (if updating a walk)
   saveUpdatedPath: ->
     # console.log "Saving the path: #{@poly.getPath().b.toString()}"
+    pathLength = google.maps.geometry.spherical.computeLength(map.poly.getPath().getArray()).toFixed()
+    # console.log "Path length: #{pathLength}"
     if @options.isNewWalk
       # console.log "This is a new walk: saving waypoints into the form"
       $('#waypoints_container').html('')
@@ -158,7 +160,8 @@ class window.SanpoMap
         $('#waypoints_container').append(
           "<input type='hidden' id='walk_waypoints_attributes_#{index}_latitude' name='walk[waypoints_attributes][#{index}][latitude]' value='#{vertex.lat()}' />" \
           + "<input type='hidden' id='walk_waypoints_attributes_#{index}_longitude' name='walk[waypoints_attributes][#{index}][longitude]' value='#{vertex.lng()}' />" \
-          + "<input type='hidden' id='walk_waypoints_attributes_#{index}_step_num' name='walk[waypoints_attributes][#{index}][step_num]' value='#{index}' />"
+          + "<input type='hidden' id='walk_waypoints_attributes_#{index}_step_num' name='walk[waypoints_attributes][#{index}][step_num]' value='#{index}' />" \
+          + "<input type='hidden' id='walk_length' name='walk[length]' value='#{pathLength}' />"
         )
       _gaq.push(['_trackEvent', 'SanpoMap', 'Creating a new walk'])
       return 1
@@ -175,7 +178,7 @@ class window.SanpoMap
         $.ajax(
           type: 'POST',
           url: "/walks/#{@options.walkId}/update_waypoints",
-          data: 'waypoints=' + JSON.stringify(waypoints_to_save),
+          data: 'waypoints=' + JSON.stringify(waypoints_to_save) + '&length=' + pathLength,
           success: (data) ->
             console.log "Route saved"
         )

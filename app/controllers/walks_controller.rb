@@ -47,6 +47,7 @@ class WalksController < ApplicationController
           :step_num => waypoint["step_num"]
         )
       end
+      @walk.length = params[:length]
       @walk.save
     end
   end

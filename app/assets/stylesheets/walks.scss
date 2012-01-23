@@ -52,7 +52,7 @@
     h1 {
       margin-bottom: 0px;
       position: relative;
-      .walkCreator {
+      .walkCreator, .walkLength {
         @include box-shadow;
         white-space: nowrap;
         font-size: 15px;
@@ -62,8 +62,11 @@
         z-index: 100;
         background-color: #fff;
         padding: 7px 14px;
-        bottom: -43px;
+        bottom: -81px;
         left: -10px;
+      }
+      .walkLength {
+        bottom: -43px;
       }
     }
   }

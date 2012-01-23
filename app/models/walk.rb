@@ -25,4 +25,8 @@ class Walk < ActiveRecord::Base
   def formatted_notes
     notes.gsub(/\n/, '<br/>')
   end
+
+  def length_in_km
+    "About #{length/1000} km"
+  end
 end
