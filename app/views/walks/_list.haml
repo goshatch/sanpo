@@ -13,4 +13,7 @@
           .meta_date
             = t("general.time_ago", :time => time_ago_in_words(walk.created_at))
             %span.user_info= t("user.by", :name => walk.user.username)
-          .meta_comments= comments_count_text(walk.comments.count)
+          .meta_comments
+            = walk.length_in_km
+            &nbsp;
+            = comments_count_text(walk.comments.count)
