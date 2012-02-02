@@ -55,6 +55,9 @@ gem 'daemons'
 gem 'postmark'
 gem 'postmark-rails', '0.4.0'
 
+# APIs
+gem 'flickraw'
+
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
