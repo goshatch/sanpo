@@ -1,0 +1,38 @@
+.row.signin_signup
+  .span5.offset1
+    %h2 Sign in
+    = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+      .errors= devise_error_messages!
+      = field_set_tag do
+        .clearfix
+          = f.label :login
+          .input= f.text_field :login
+        .clearfix
+          = f.label :password
+          .input= f.password_field :password
+        - if devise_mapping.rememberable?
+          .clearfix
+            = f.label :remember_me
+            .input= f.check_box :remember_me
+        .actions
+          = f.submit "Sign in", :class => "btn primary"
+  .span5
+    %h2 Sign up
+    = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+      .errors= devise_error_messages!
+      = field_set_tag do
+        .clearfix
+          = f.label :username
+          .input= f.text_field :username
+        .clearfix
+          = f.label :email
+          .input= f.text_field :email
+        .clearfix
+          = f.label :password
+          .input= f.password_field :password
+        .clearfix
+          = f.label :password_confirmation
+          .input= f.password_field :password_confirmation
+        .actions
+          = f.submit "Sign up", :class => "btn primary createAccountButton"
+= render :partial => "devise/shared/links"
