@@ -1,23 +1,23 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.2'
+gem 'rails', '3.2.1'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+gem 'sqlite3', "~> 1.3.5"
 
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.1.4'
-  gem 'coffee-rails', '~> 3.1.1'
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
 
 gem 'jquery-rails'
-gem 'haml'
+gem 'haml', "~> 3.1.4"
 gem 'haml-rails', :group => :development
 gem 'coffee-filter' # Coffeescript in HAML files
 
@@ -38,7 +38,7 @@ gem 'capistrano_colors'
 gem 'ruby-debug19', :require => 'ruby-debug'
 
 # User authentication
-gem "devise"
+gem "devise", "~> 2.0.0"
 gem "oa-oauth", :require => "omniauth/oauth"
 
 group :development, :test do
@@ -47,7 +47,8 @@ group :development, :test do
 end
 
 # Background jobs
-gem 'delayed_job_active_record'
+gem "delayed_job", "~> 3.0.1"
+gem "delayed_job_active_record", "~> 0.3.2"
 gem 'delayed_job_web'
 gem 'daemons'
 
