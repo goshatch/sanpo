@@ -47,7 +47,7 @@ $('#walkPageGalleryButton').click(function(event) {
 $('#mapLocationSearchForm').submit(function(event) {
   _gaq.push(['_trackEvent', 'WalkPage', 'new walk: geocoding form submitted'])
 });
-$('#mapLocationSearchForm').submit(function(event) {
+$('form#user_new').submit(function(event) {
   _gaq.push(['_trackEvent', 'Goal tracking', 'Account created']);
 });
 $('.commentFormSignInButton').click(function(event) {

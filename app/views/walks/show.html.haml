@@ -25,6 +25,11 @@
     $(function(){
       _gaq.push(['_trackEvent', 'Goal tracking', 'Walk created', "#{@walk.id}"]);
     });
+- if defined? @new_walk and current_user.walks.count == 3
+  :javascript
+    $(function(){
+      _gaq.push(['_trackEvent', 'Goal tracking', 'User created their third walk', "#{@walk.id}"]);
+    });
 .container
   .page-header
     %h1
