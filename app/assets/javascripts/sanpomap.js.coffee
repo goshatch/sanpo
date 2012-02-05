@@ -133,7 +133,7 @@ class window.SanpoMap
     @map.draggableCursor = 'crosshair'
     @map.draggingCursor = 'move'
     $('#map_container').addClass 'editMode'
-    $('.editButton').removeClass('primary').addClass('danger').text("Save the changes")
+    $('.editButton').removeClass('btn-primary').addClass('btn-danger').text("Save the changes")
 
   stopEditMode: =>
     @clearMarkers()
@@ -143,7 +143,7 @@ class window.SanpoMap
     @map.draggableCursor = 'auto'
     @map.draggingCursor = 'auto'
     $('#map_container').removeClass 'editMode'
-    $('.editButton').removeClass('danger').addClass('primary').text("Edit the route")
+    $('.editButton').removeClass('btn-danger').addClass('btn-primary').text("Edit the route")
 
     @updateStartGoalIcons()
     @saveUpdatedPath()

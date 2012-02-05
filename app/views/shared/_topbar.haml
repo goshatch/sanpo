@@ -1,5 +1,5 @@
-%section.topbar
-  .fill
+%section.navbar.navbar-fixed-top
+  .navbar-inner
     .container
       = link_to(image_tag("logo.png"), root_path, {:class => "brand"})
       - if user_signed_in?
