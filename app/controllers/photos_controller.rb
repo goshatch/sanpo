@@ -8,7 +8,11 @@ class PhotosController < ApplicationController
 
   def create
     @photo = Photo.create(params[:photo])
-    redirect_to walk_path(params[:walk_id])
+    if @photo.errors.empty?
+      redirect_to walk_path(params[:walk_id])
+    else
+      render 'photos/new'
+    end
   end
 
   def destroy

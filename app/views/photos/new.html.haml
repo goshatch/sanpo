@@ -1,5 +1,6 @@
 %h1= t("photos.new.upload_new_photo")
+= render "shared/error_messages", :target => @photo
 = form_for :photo, :url => walk_photos_path(@photo.walk_id), :html => { :multipart => true } do |form|
   = form.file_field :image
-  = form.submit :value => t("photos.new.upload_new_photo_button"), :disable_with => t("general.disable_with.uploading"), :class => "btn primary"
+  = form.submit :value => t("photos.new.upload_new_photo_button"), :disable_with => t("general.disable_with.uploading"), :class => "btn btn-primary"
   = form.hidden_field :walk_id
