@@ -1,0 +1,25 @@
+#uploadPhoto.modal.fade
+  .modal-header
+    %a.close{:href => "#"} ×
+    %h3= t("photos.new.upload_new_photo")
+  = form_for :photo, :url => walk_photos_path(@walk), :remote => true, :html => { :multipart => true } do |form|
+    .modal-body
+      .errors= render "shared/error_messages", :target => @photo
+      = form.file_field :image
+      = form.hidden_field :walk_id
+      JPG or PNG, less than 2MB, please.
+    .modal-footer
+      %a.btn{:href => "#", :onclick => "$('#uploadPhoto').modal('hide');return false;"}= t("general.cancel")
+      = form.submit :value => t("photos.new.upload_new_photo_button"), :disable_with => t("general.disable_with.uploading"), :class => "btn primary disabled", :disabled => "disabled", :id => "photo_submit"
+  :javascript
+    $('#photo_image').change(function() {
+      var selected_file = $("#photo_image").val();
+      console.log(selected_file);
+      if (selected_file !== "") {
+        if (selected_file.match(/\.(jpg|jpeg|png)$/)) {
+          $('#photo_submit').removeClass('disabled').removeAttr("disabled");
+        }
+      } else {
+        $('#photo_submit').addClass('disabled').attr("disabled", "disabled");
+      }
+    });

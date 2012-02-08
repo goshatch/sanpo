@@ -17,6 +17,7 @@ en:
         show: "%{walk_title}: a photowalk on"
         new: "Submit a new photowalk on "
     time_ago: "%{time} ago"
+    cancel: "Cancel"
     save: "Save"
     stats: "Currently: %{walks} walks, %{photos} photos, %{comments} comments, %{users} photographers!"
     disable_with:

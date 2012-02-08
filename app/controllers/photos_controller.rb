@@ -2,8 +2,6 @@ class PhotosController < ApplicationController
   respond_to :html, :js
 
   def new
-    @photo = Photo.new
-    @photo.walk_id = params[:walk_id]
   end
 
   def create

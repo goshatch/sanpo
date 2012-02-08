@@ -15,6 +15,10 @@ class WalksController < ApplicationController
       @comment = Comment.new
       @comment.walk = @walk
       @comment.user = current_user
+      if @walk.user == current_user
+        @photo = Photo.new
+        @photo.walk = @walk
+      end
     end
     render :layout => 'fullwidth'
   end

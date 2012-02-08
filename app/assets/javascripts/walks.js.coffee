@@ -2,6 +2,10 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $ ->
+  $('#uploadPhoto').modal({
+    backdrop: true,
+    keyboard: true
+  })
   $('.best_in_place').best_in_place()
   $('form#new_walk').submit (event) ->
     success = map.saveUpdatedPath()
