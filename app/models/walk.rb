@@ -9,6 +9,10 @@ class Walk < ActiveRecord::Base
 
   accepts_nested_attributes_for :waypoints
 
+  def to_param
+    "#{id} #{title}".parameterize
+  end
+
   def center_coordinates
     # TODO: This code kind of sucks
     start = waypoints.first
