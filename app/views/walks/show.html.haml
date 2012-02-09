@@ -36,7 +36,8 @@
       .alert-message.warning
         %strong Just a second!
         This walk is currently a draft. It is invisible to the rest of SANPO's users.
-        = link_to "Publish this walk!", walk_publish_path(@walk), :remote => true, :class => "btn primary"
+        - if current_user and @walk.user == current_user
+          = link_to "Publish this walk!", walk_publish_path(@walk), :remote => true, :class => "btn primary"
 .container
   .page-header
     %h1
