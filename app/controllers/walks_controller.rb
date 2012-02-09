@@ -56,6 +56,19 @@ class WalksController < ApplicationController
     end
   end
 
+  def publish
+    @walk = Walk.find(params[:id])
+    raise "Permission denied" unless @walk.user == current_user
+    if @walk.photos.count > 0
+      @success = true
+      @walk.published = true
+      @walk.published_at = Time.now
+      @walk.save
+    else
+      @success = false
+    end
+  end
+
   def update
     @walk = Walk.find(params[:id])
     raise "Permission denied" unless @walk.user == current_user

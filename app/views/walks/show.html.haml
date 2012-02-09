@@ -30,6 +30,13 @@
     $(function(){
       _gaq.push(['_trackEvent', 'Goal tracking', 'User created their third walk', "#{@walk.id}"]);
     });
+- if !@walk.published?
+  .draft_alert
+    .container
+      .alert-message.warning
+        %strong Just a second!
+        This walk is currently a draft. It is invisible to the rest of SANPO's users.
+        = link_to "Publish this walk!", walk_publish_path(@walk), :remote => true, :class => "btn primary"
 .container
   .page-header
     %h1

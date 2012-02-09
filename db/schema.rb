@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(:version => 20120123124142) do
     t.integer  "user_id"
     t.integer  "walk_id"
     t.text     "text"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(:version => 20120123124142) do
     t.datetime "failed_at"
     t.string   "locked_by"
     t.string   "queue"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
@@ -85,8 +85,8 @@ ActiveRecord::Schema.define(:version => 20120123124142) do
 
   create_table "waypoints", :force => true do |t|
     t.string   "label"
-    t.float    "latitude"
-    t.float    "longitude"
+    t.decimal  "latitude",   :precision => 20, :scale => 16
+    t.decimal  "longitude",  :precision => 20, :scale => 16
     t.integer  "step_num"
     t.integer  "walk_id"
     t.datetime "created_at"

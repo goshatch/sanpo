@@ -8,6 +8,7 @@ Sanpo::Application.routes.draw do
     resources :comments
   end
 
+  match 'walks/:id/publish' => 'walks#publish', :as => :walk_publish
   match 'walks/:id/update_waypoints' => 'walks#update_waypoints'
   match "/delayed_job" => DelayedJobWeb, :anchor => false
   # The priority is based upon order of creation:

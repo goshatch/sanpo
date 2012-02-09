@@ -1,0 +1,7 @@
+<% if @success %>
+  $(".draft_alert").remove();
+  alert("Walk published! Thank you!");
+  _gaq.push(['_trackEvent', 'Goal tracking', 'Walk published', '<%= @walk.id %>']);
+<% else  %>
+  alert("Please add at least one photo before you publish the walk.");
+<% end %>

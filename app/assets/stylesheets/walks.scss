@@ -24,9 +24,33 @@
       top: 10px;
       left: 10px;
     }
-  }
-  li:hover {
-    background-color: #f9f9f9;
+    .draft {
+      position: absolute;
+      display: block;
+      right: 10px;
+      top: 10px;
+      background-color: #a00000;
+      color: #fff;
+      border-radius: 3px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -ie-border-radius: 3px;
+      padding: 0px 5px;
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 11px;
+      line-height: 20px;
+      text-transform: uppercase;
+    }
+    &:hover {
+      background-color: #f9f9f9;
+    }
+    &.draft {
+      h3 {
+        padding-right: 55px;
+        color: #999;
+      }
+      a { color: #ccc; }
+    }
   }
 }
 
@@ -38,7 +62,10 @@
 
 .show_walk {
   .container { position: relative; }
-
+  .draft_alert {
+    background-color: rgba(128, 128, 128, 0.5);
+    .alert-message { text-align: center; }
+  }
   .page-header {
     @include box-shadow;
     position: absolute;
