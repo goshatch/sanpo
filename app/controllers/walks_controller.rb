@@ -20,13 +20,11 @@ class WalksController < ApplicationController
         @photo.walk = @walk
       end
     end
-    render :layout => 'fullwidth'
   end
 
   def new
     @walk = Walk.new
     @walk.user = current_user
-    render :layout => 'fullwidth'
   end
 
   def create
@@ -35,7 +33,7 @@ class WalksController < ApplicationController
     @walk.save!
     redirect_to({:action => :show, :id => @walk.id, :n => "yes"})
   rescue ActiveRecord::RecordInvalid
-    render :action => :new, :layout => "fullwidth"
+    render :action => :new
   end
 
   def update_waypoints
