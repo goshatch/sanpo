@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
   # Virtual attribute for authenticating by either username or email
   attr_accessor :login
 
+  # Setup Geocoder
+  geocoded_by :current_sign_in_ip
+
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :remember_me, :username, :login, :mail_comment_notification
 

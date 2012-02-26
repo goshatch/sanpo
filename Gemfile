@@ -34,14 +34,16 @@ gem "best_in_place", :git => "git://github.com/bernat/best_in_place.git"
 gem 'capistrano'
 gem 'capistrano_colors'
 
-# To use debugger
-gem 'ruby-debug19', :require => 'ruby-debug'
-
 # User authentication
 gem "devise", "~> 2.0.0"
 gem "oa-oauth", :require => "omniauth/oauth"
 
+# Geocoding
+gem "geocoder", "~> 1.1.1"
+
 group :development, :test do
+  # To use debugger
+  gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'rspec'
   gem 'rspec-rails'
 end

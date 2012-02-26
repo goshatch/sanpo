@@ -6,6 +6,7 @@ class window.Sanpo.NearbyWalksMap
     centerLat: 0
     centerLng: 0
     zoomLevel: 2
+    search: null
 
   constructor: (options) ->
     if options
@@ -15,6 +16,9 @@ class window.Sanpo.NearbyWalksMap
         @options.centerLng = options.centerLng
       if options.zoomLevel != undefined
         @options.zoomLevel = options.zoomLevel
+      if options.search != undefined
+        @options.search = options.search
+        console.log "Setting search to #{options.search}"
 
     @centerPoint = new google.maps.LatLng(@options.centerLat, @options.centerLng)
     mapOptions =
@@ -27,3 +31,22 @@ class window.Sanpo.NearbyWalksMap
       zoomControlOptions:
         position: google.maps.ControlPosition.LEFT_CENTER
     @gmap = new google.maps.Map(document.getElementById('map_canvas'), mapOptions)
+    @bounds = new google.maps.LatLngBounds()
+    @addWalkMarkers()
+
+  addWalkMarkers: ->
+    url = "/walks.json"
+    if @options.search
+      url = "#{url}?search=#{@options.search}"
+    console.log "Ajax url: #{url}"
+    $.getJSON(url, (walks) =>
+      for walk in walks
+        vertex = new google.maps.LatLng(walk.latitude, walk.longitude)
+        marker = new google.maps.Marker(
+          map: @gmap
+          position: vertex
+          title: walk.title
+        )
+        @bounds.extend(vertex)
+        @gmap.fitBounds(@bounds)
+    )

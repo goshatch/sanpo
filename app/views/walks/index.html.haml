@@ -1,9 +1,16 @@
 - content_for :head do
   :javascript
     var map = null;
+    var options = {
+      centerLat: "#{@loc.latitude}",
+      centerLng: "#{@loc.longitude}"#{
+        if @search.present?
+          ',\n  search: "' + @search + '"'
+        end
+      }
+    };
     $(function(){
-      map = new Sanpo.NearbyWalksMap({});
-      Sanpo.geolocateAndCenterMap(map.gmap);
+      map = new Sanpo.NearbyWalksMap(options);
     });
 = render :partial => 'map'
 .container

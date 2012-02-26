@@ -15,4 +15,5 @@ window.Sanpo.geolocateAndCenterMap = (map) ->
           when error.POSITION_UNAVAILABLE then console.log("geolocation: Position unavailable")
           when error.PERMISSION_DENIED then console.log("geolocation: Permission denied")
           when error.UNKNOWN_ERROR then console.log("geolocation: Unknown error")
+      , {timeout:5000}
     )

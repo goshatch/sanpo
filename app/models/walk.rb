@@ -9,6 +9,9 @@ class Walk < ActiveRecord::Base
 
   accepts_nested_attributes_for :waypoints
 
+  reverse_geocoded_by :latitude, :longitude, :address => :location
+  after_validation :reverse_geocode
+
   def to_param
     "#{id} #{title}".parameterize
   end

@@ -3,7 +3,19 @@ class WalksController < ApplicationController
   respond_to :html, :json
 
   def index
-    @walks = Walk.find(:all).reverse
+    @loc = get_user_location
+    if params[:search].present?
+      @search = params[:search]
+      @walks = Walk.near(@search, 10, :order => :distance)
+    elsif params[:all].present?
+      @walks = Walk.find(:all).reverse
+    else
+      @walks = Walk.near([@loc.latitude, @loc.longitude], 10).reverse
+    end
+    respond_with(@walks) do |format|
+      format.json { render }
+      format.html { render }
+    end
   end
 
   def show
@@ -30,6 +42,8 @@ class WalksController < ApplicationController
   def create
     @walk = Walk.create(params[:walk])
     @walk.user = current_user
+    @walk.latitude = @walk.waypoints.first.latitude
+    @walk.longitude = @walk.waypoints.first.longitude
     @walk.save!
     redirect_to({:action => :show, :id => @walk.id, :n => "yes"})
   rescue ActiveRecord::RecordInvalid
@@ -50,6 +64,8 @@ class WalksController < ApplicationController
         )
       end
       @walk.length = params[:length]
+      @walk.latitude = @walk.waypoints.first.latitude
+      @walk.longitude = @walk.waypoints.first.longitude
       @walk.save
     end
   end
