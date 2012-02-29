@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
       loc.ip_address = current_user.current_sign_in_ip
       loc.user = current_user
     else
-      loc.ip_address = request.remote
+      loc.ip_address = request.remote_ip
     end
     # loc.ip_address = "122.103.221.209"
     loc.ip_address = "126.169.224.101"
