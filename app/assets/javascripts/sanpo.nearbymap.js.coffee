@@ -5,7 +5,7 @@ class window.Sanpo.NearbyWalksMap
   options:
     centerLat: 0
     centerLng: 0
-    zoomLevel: 2
+    zoomLevel: 12
     search: null
 
   constructor: (options) ->
@@ -30,19 +30,32 @@ class window.Sanpo.NearbyWalksMap
       streetViewControl: false
       zoomControlOptions:
         position: google.maps.ControlPosition.LEFT_CENTER
+    console.log "Creating a map centered on: #{mapOptions.center.lat()}x#{mapOptions.center.lng()}"
     @gmap = new google.maps.Map(document.getElementById('map_canvas'), mapOptions)
-    @bounds = new google.maps.LatLngBounds()
+    console.log "New map is centered on: #{@gmap.center.lat()}x#{@gmap.center.lng()}"
+    google.maps.event.addListener(@gmap, 'center_changed', =>
+      console.log "Now the map is centered on: #{@gmap.center.lat()}x#{@gmap.center.lng()}"
+    )
+    # @bounds = new google.maps.LatLngBounds()
     @addWalkMarkersToMap()
+    geocoderOptions =
+      placeholder: "Where do you want to go?"
+      cssClass: "large"
+      buttonText: "Search"
+    @geocoder = new Sanpo.MapSearchField(@gmap, geocoderOptions)
+    window.Sanpo.geolocateAndCenterMap(@gmap)
 
   addWalkMarkersToMap: ->
-    url = "/walks.json"
-    if @options.search
-      url = "#{url}?search=#{@options.search}"
+    # url = "/walks.json"
+    # if @options.search
+    #   url = "#{url}?search=#{@options.search}"
+    # url = "/walks.json?lat=#{@gmap.center.lat()}&lng=#{@gmap.center.lng()}"
+    url = "/walks.json?all=true"
     console.log "Ajax url: #{url}"
     $.getJSON(url, (walks) =>
       @createInfoBubble(walk) for walk in walks
     )
-    @gmap.fitBounds(@bounds)
+    # @gmap.fitBounds(@bounds)
 
   # Creates the infobubble for the walk passed as parameter and adds it to @gmap.
   # The walk must come from the JSON list in addWalkMarkersToMap
@@ -58,13 +71,14 @@ class window.Sanpo.NearbyWalksMap
       padding: 5
       minWidth: 160
       maxWidth: 200
-      borderWidth: 3
+      borderWidth: 5
       borderRadius: 10
       hideCloseButton: true
+      disableAutoPan: true
       content: @infoBubbleContentForWalk(walk)
     )
     infoBubble.open()
-    @bounds.extend(vertex)
+    # @bounds.extend(vertex)
 
   # Generates the content for the walk's infobubble (icon, description, link).
   # The walk must come from the JSON list as defined in addWalkMarkersToMap

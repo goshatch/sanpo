@@ -145,6 +145,10 @@
       padding: 5px;
       margin-bottom: 0;
     }
+    &.large {
+      top: 450px;
+      right: 0;
+    }
   }
 
   #map_container {
@@ -189,10 +193,13 @@
 }
 
 .walkInfoBubble {
+  display: block;
+  height: 32px;
   a {
     color: #666;
     &:hover { color: #666; text-decoration: none; }
     position: relative;
+    display: block;
     .icon {
       position: absolute;
       height: 32px;
@@ -204,6 +211,7 @@
       .title {
         color: #222;
         font-weight: bold;
+        white-space: nowrap;
       }
       .length { font-size: 13px; }
     }

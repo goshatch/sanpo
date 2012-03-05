@@ -64,7 +64,7 @@ class window.Sanpo.WalkMap
     # If this is a new walk form, we should switch to edit mode right away
     if @options.isNewWalk
       $('.editButtonContainer').hide()
-      @initGeocoder()
+      @geocoder = new Sanpo.MapSearchField(@gmap)
       @setEditMode(true)
 
     # Handle clicks on the edit button
@@ -72,28 +72,6 @@ class window.Sanpo.WalkMap
       @toggleEditMode()
       event.stopPropagation()
       event.preventDefault()
-
-  # Setup the search field so that the user can focus the map on desired location
-  initGeocoder: =>
-    @geocoder = new google.maps.Geocoder();
-
-    $("#mapSearchField").removeClass("hidden")
-    $("#mapLocationSearchForm").submit (event) =>
-      @processGeocoding()
-      event.stopPropagation()
-      event.preventDefault()
-
-  processGeocoding: =>
-    address = $("#mapLocationSearchForm .searchField").val()
-    @geocoder.geocode((
-        address: address
-      ), (results, status) =>
-        if status == google.maps.GeocoderStatus.OK
-          @gmap.setCenter(results[0].geometry.location)
-          @gmap.setZoom(15)
-        else
-          alert("Couldn't locate that place: " + status);
-    )
 
   # If we're creating a new walk, enable the save button if there are at least 2 waypoints
   mapClickHandler: (event) =>

@@ -1,12 +1,20 @@
+<% first = true %>
 [
 <% @walks.each_with_index do |walk, index| %>
-  {
-    "id": <%= walk.id %>,
-    "title": "<%= walk.title %>",
-    "latitude": <%= walk.latitude %>,
-    "longitude": <%= walk.longitude %>,
-    "icon": "<%= walk.photos.first.image.url(:thumb) %>",
-    "length": "<%= walk.length_in_km %>"
-  }<% unless (index + 1) ==  @walks.length -%>,<% end -%>
+  <% if walk.published? %>
+    <% if first -%>
+      <% first = false -%>
+    <% else -%>
+      ,
+    <% end -%>
+    {
+      "id": <%= walk.id %>,
+      "title": "<%= walk.title %>",
+      "latitude": <%= walk.latitude %>,
+      "longitude": <%= walk.longitude %>,
+      "icon": "<%= walk.photos.first.image.url(:thumb) %>",
+      "length": "<%= walk.length_in_km %>"
+    }
+  <% end -%>
 <% end %>
 ]

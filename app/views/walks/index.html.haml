@@ -9,9 +9,12 @@
         end
       }
     };
+    console.log("Setting map options: centerLat: " + options.centerLat + ", centerLng: " + options.centerLng)
     $(function(){
       map = new Sanpo.NearbyWalksMap(options);
     });
+.container
+  = render :partial => 'map_search_field'
 = render :partial => 'map'
 .container
   .row.homePage

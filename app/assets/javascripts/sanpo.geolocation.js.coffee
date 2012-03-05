@@ -9,6 +9,7 @@ window.Sanpo.geolocateAndCenterMap = (map) ->
         console.log("Successfully geolocated! #{coords.latitude}x#{coords.longitude}")
         latLng = new google.maps.LatLng(coords.latitude, coords.longitude)
         map.setCenter(latLng)
+        map.setZoom(map.getZoom() + 2) # This is completely arbitrary
       , (error) ->
         switch error.code
           when error.TIMEOUT then console.log("geolocation: Timeout")

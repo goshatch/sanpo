@@ -3,14 +3,19 @@ class WalksController < ApplicationController
   respond_to :html, :json
 
   def index
-    @loc = get_user_location
-    if params[:search].present?
-      @search = params[:search]
-      @walks = Walk.near(@search, 10, :order => :distance)
-    elsif params[:all].present?
-      @walks = Walk.find(:all).reverse
+    if params[:lat].present? and params[:lng].present?
+      @walks = Walk.near([params[:lat].to_f, params[:lng].to_f], 10, :order => :distance)
     else
-      @walks = Walk.near([@loc.latitude, @loc.longitude], 10).reverse
+      @loc = get_user_location
+      if params[:search].present?
+        @search = params[:search]
+        @walks = Walk.near(@search, 10, :order => :distance)
+      elsif params[:all].present?
+        @walks = Walk.find(:all).reverse
+      else
+        @walks = Walk.find(:all).reverse
+        # @walks = Walk.near([@loc.latitude, @loc.longitude], 10).reverse
+      end
     end
     respond_with(@walks) do |format|
       format.json { render }

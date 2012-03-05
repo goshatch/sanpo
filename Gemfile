@@ -39,7 +39,7 @@ gem "devise", "~> 2.0.0"
 gem "oa-oauth", :require => "omniauth/oauth"
 
 # Geocoding
-gem "geocoder", "~> 1.1.1"
+gem "geocoder", :git => "git://github.com/alexreisner/geocoder.git"
 
 group :development, :test do
   # To use debugger

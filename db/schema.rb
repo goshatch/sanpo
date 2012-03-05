@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120225095310) do
+ActiveRecord::Schema.define(:version => 20120304140728) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -82,18 +82,18 @@ ActiveRecord::Schema.define(:version => 20120225095310) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "walks", :force => true do |t|
-    t.string   "title",        :limit => 70,                                                    :null => false
+    t.string   "title",        :limit => 70,                    :null => false
     t.text     "description"
     t.text     "notes"
     t.string   "link"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "length",                                                     :default => 0
-    t.boolean  "published",                                                  :default => false, :null => false
+    t.integer  "length",                     :default => 0
+    t.boolean  "published",                  :default => false, :null => false
     t.datetime "published_at"
-    t.decimal  "latitude",                   :precision => 20, :scale => 16
-    t.decimal  "longitude",                  :precision => 20, :scale => 16
+    t.float    "latitude",     :limit => 20
+    t.float    "longitude",    :limit => 20
     t.string   "location"
   end
 
