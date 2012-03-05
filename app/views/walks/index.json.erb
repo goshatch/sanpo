@@ -12,7 +12,11 @@
       "title": "<%= walk.title %>",
       "latitude": <%= walk.latitude %>,
       "longitude": <%= walk.longitude %>,
-      "icon": "<%= walk.photos.first.image.url(:thumb) %>",
+      <% if walk.photos.count >= 1 -%>
+        "icon": "<%= walk.photos.first.image.url(:thumb) %>",
+      <% else -%>
+        "icon": "/assets/default_walk_thumbnail.jpg",
+      <% end -%>
       "length": "<%= walk.length_in_km %>"
     }
   <% end -%>
