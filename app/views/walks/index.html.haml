@@ -1,13 +1,32 @@
-.row.homePage
-  .span8
-    =render :partial => 'not_logged_in'
-  .span8
-    .row
-      %h6.span4
-        = t("walks.index.latest_walks")
-      .span4.alignRight.frontPageSmallNewWalkButton
-        = link_to("Share a new walk", new_walk_path, :class => "btn small info")
-    = render :partial => "list", :locals => {:walks => @walks}
+- content_for :head do
+  :javascript
+    var map = null;
+    var options = {
+      centerLat: "#{@loc.latitude}",
+      centerLng: "#{@loc.longitude}"#{
+        if @search.present?
+          ',\n  search: "' + @search + '"'
+        end
+      }
+    };
+    console.log("Setting map options: centerLat: " + options.centerLat + ", centerLng: " + options.centerLng)
+    $(function(){
+      map = new Sanpo.NearbyWalksMap(options);
+    });
+.container
+  = render :partial => 'map_search_field'
+= render :partial => 'map'
+.container
+  .row.homePage
+    .span8
+      =render :partial => 'not_logged_in'
+    .span8
+      .row
+        %h6.span4
+          = t("walks.index.latest_walks")
+        .span4.alignRight.frontPageSmallNewWalkButton
+          = link_to("Share a new walk", new_walk_path, :class => "btn small info")
+      = render :partial => "list", :locals => {:walks => @walks}
 
 :javascript
   $('.createAccountButton a').click(function(event) {

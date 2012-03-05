@@ -4,7 +4,7 @@
       %input.span5.searchField{:type => "search"}
       %input.btn.primary.submitButton{:type => "submit", :value => "Search"}
   #map_canvas
-  - if @walk.user == current_user
+  - if @walk and current_user and @walk.user == current_user
     #map_controls
       .control.editButtonContainer
         = link_to "Edit the route", "#", :class => "btn large primary editButton"

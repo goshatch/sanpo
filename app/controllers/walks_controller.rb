@@ -3,7 +3,24 @@ class WalksController < ApplicationController
   respond_to :html, :json
 
   def index
-    @walks = Walk.find(:all).reverse
+    if params[:lat].present? and params[:lng].present?
+      @walks = Walk.near([params[:lat].to_f, params[:lng].to_f], 10, :order => :distance)
+    else
+      @loc = get_user_location
+      if params[:search].present?
+        @search = params[:search]
+        @walks = Walk.near(@search, 10, :order => :distance)
+      elsif params[:all].present?
+        @walks = Walk.find(:all).reverse
+      else
+        @walks = Walk.find(:all).reverse
+        # @walks = Walk.near([@loc.latitude, @loc.longitude], 10).reverse
+      end
+    end
+    respond_with(@walks) do |format|
+      format.json { render }
+      format.html { render }
+    end
   end
 
   def show
@@ -20,22 +37,22 @@ class WalksController < ApplicationController
         @photo.walk = @walk
       end
     end
-    render :layout => 'fullwidth'
   end
 
   def new
     @walk = Walk.new
     @walk.user = current_user
-    render :layout => 'fullwidth'
   end
 
   def create
     @walk = Walk.create(params[:walk])
     @walk.user = current_user
+    @walk.latitude = @walk.waypoints.first.latitude
+    @walk.longitude = @walk.waypoints.first.longitude
     @walk.save!
     redirect_to({:action => :show, :id => @walk.id, :n => "yes"})
   rescue ActiveRecord::RecordInvalid
-    render :action => :new, :layout => "fullwidth"
+    render :action => :new
   end
 
   def update_waypoints
@@ -52,6 +69,8 @@ class WalksController < ApplicationController
         )
       end
       @walk.length = params[:length]
+      @walk.latitude = @walk.waypoints.first.latitude
+      @walk.longitude = @walk.waypoints.first.longitude
       @walk.save
     end
   end

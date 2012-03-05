@@ -1,7 +1,9 @@
 # This creates and initializes a walk map, as well as provides
 # functions to add and edit waypoints
+if !window.Sanpo
+  window.Sanpo = {}
 
-class window.SanpoMap
+class window.Sanpo.WalkMap
   # Default options
   # TODO: get sensible defaults for centerLat/Lng
   options:
@@ -40,7 +42,7 @@ class window.SanpoMap
       streetViewControl: false
       zoomControlOptions:
         position: google.maps.ControlPosition.LEFT_CENTER
-    @map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions)
+    @gmap = new google.maps.Map(document.getElementById('map_canvas'), mapOptions)
 
     # Initialize the polyline to draw our route
     polyOptions =
@@ -48,7 +50,7 @@ class window.SanpoMap
       strokeOpacity: 0.5
       strokeWeight: 5
     @poly = new google.maps.Polyline(polyOptions)
-    @poly.setMap(@map)
+    @poly.setMap(@gmap)
 
     # if a path already exists, build it here and zoom the map to fit it
     if @options.waypoints.length > 0
@@ -62,7 +64,7 @@ class window.SanpoMap
     # If this is a new walk form, we should switch to edit mode right away
     if @options.isNewWalk
       $('.editButtonContainer').hide()
-      @initGeocoder()
+      @geocoder = new Sanpo.MapSearchField(@gmap)
       @setEditMode(true)
 
     # Handle clicks on the edit button
@@ -70,28 +72,6 @@ class window.SanpoMap
       @toggleEditMode()
       event.stopPropagation()
       event.preventDefault()
-
-  # Setup the search field so that the user can focus the map on desired location
-  initGeocoder: =>
-    @geocoder = new google.maps.Geocoder();
-
-    $("#mapSearchField").removeClass("hidden")
-    $("#mapLocationSearchForm").submit (event) =>
-      @processGeocoding()
-      event.stopPropagation()
-      event.preventDefault()
-
-  processGeocoding: =>
-    address = $("#mapLocationSearchForm .searchField").val()
-    @geocoder.geocode((
-        address: address
-      ), (results, status) =>
-        if status == google.maps.GeocoderStatus.OK
-          @map.setCenter(results[0].geometry.location)
-          @map.setZoom(15)
-        else
-          alert("Couldn't locate that place: " + status);
-    )
 
   # If we're creating a new walk, enable the save button if there are at least 2 waypoints
   mapClickHandler: (event) =>
@@ -129,9 +109,9 @@ class window.SanpoMap
     @createMarkers()
     # console.log "Starting edit mode"
 
-    google.maps.event.addListener(@map, 'click', @mapClickHandler)
-    @map.draggableCursor = 'crosshair'
-    @map.draggingCursor = 'move'
+    google.maps.event.addListener(@gmap, 'click', @mapClickHandler)
+    @gmap.draggableCursor = 'crosshair'
+    @gmap.draggingCursor = 'move'
     $('#map_container').addClass 'editMode'
     $('.editButton').removeClass('primary').addClass('danger').text("Save the changes")
 
@@ -139,9 +119,9 @@ class window.SanpoMap
     @clearMarkers()
     # console.log "Stopping edit mode"
 
-    google.maps.event.clearListeners(@map, 'click')
-    @map.draggableCursor = 'auto'
-    @map.draggingCursor = 'auto'
+    google.maps.event.clearListeners(@gmap, 'click')
+    @gmap.draggableCursor = 'auto'
+    @gmap.draggingCursor = 'auto'
     $('#map_container').removeClass 'editMode'
     $('.editButton').removeClass('danger').addClass('primary').text("Edit the route")
 
@@ -196,7 +176,7 @@ class window.SanpoMap
     bounds = new google.maps.LatLngBounds()
     @poly.getPath().forEach (vertex, index) ->
       bounds.extend(vertex)
-    @map.fitBounds(bounds)
+    @gmap.fitBounds(bounds)
 
   #
   # ------------- Vertex management --------------------------------------------------
@@ -261,7 +241,7 @@ class window.SanpoMap
     if !vertex
       vertex = new google.maps.Marker(
         position: point
-        map: @map
+        map: @gmap
         icon: markerOptions.icon
         draggable: markerOptions.draggable
         raiseOnDrag: false

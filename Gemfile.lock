@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/alexreisner/geocoder.git
+  revision: 42166c805d7e7d9c73698804454a19c4d6282093
+  specs:
+    geocoder (1.1.1)
+
+GIT
   remote: git://github.com/bernat/best_in_place.git
   revision: 47a908aa4f7bbe04e8439b84a7928ac88a3e6a35
   specs:
@@ -256,6 +262,7 @@ DEPENDENCIES
   delayed_job_active_record (~> 0.3.2)
   delayed_job_web
   devise (~> 2.0.0)
+  geocoder!
   haml (~> 3.1.4)
   haml-rails
   headless

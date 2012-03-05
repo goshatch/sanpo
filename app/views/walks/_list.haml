@@ -5,7 +5,7 @@
     - walks.each do |walk|
       - my_draft_walk = (!walk.published? and walk.user == current_user)
       - if walk.published? or my_draft_walk
-        %li{:id => "walk#{walk.id}", :class => my_draft_walk ? "draft" : "published"}
+        %li{:id => "walk#{walk.id}", :data => {:walk_for_map => true, :walk_id => "#{walk.id}"}, :class => my_draft_walk ? "draft" : "published"}
           = link_to walk_path(walk) do
             %h3= walk.title
             - if walk.photos.count >= 1

@@ -1,7 +1,3 @@
-// Place all the styles related to the Walks controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 .walks.list {
   border-top: 1px solid #eee;
   background-color: #fff;
@@ -60,7 +56,7 @@
   box-shadow: 1px 1px 4px rgba(0,0,0,0.5);
 }
 
-.show_walk {
+.full_width {
   .container { position: relative; }
   .draft_alert {
     background-color: rgba(128, 128, 128, 0.5);
@@ -149,6 +145,10 @@
       padding: 5px;
       margin-bottom: 0;
     }
+    &.large {
+      top: 450px;
+      right: 0;
+    }
   }
 
   #map_container {
@@ -188,6 +188,32 @@
   #map_container.editMode {
     #map_controls {
       .searchField { display: block; }
+    }
+  }
+}
+
+.walkInfoBubble {
+  display: block;
+  height: 32px;
+  a {
+    color: #666;
+    &:hover { color: #666; text-decoration: none; }
+    position: relative;
+    display: block;
+    .icon {
+      position: absolute;
+      height: 32px;
+      width: 32px;
+    }
+    .info {
+      line-height: 16px;
+      margin-left: 40px;
+      .title {
+        color: #222;
+        font-weight: bold;
+        white-space: nowrap;
+      }
+      .length { font-size: 13px; }
     }
   }
 }
