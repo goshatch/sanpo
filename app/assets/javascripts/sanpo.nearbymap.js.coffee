@@ -51,7 +51,7 @@ class window.Sanpo.NearbyWalksMap
     #   url = "#{url}?search=#{@options.search}"
     # url = "/walks.json?lat=#{@gmap.center.lat()}&lng=#{@gmap.center.lng()}"
     url = "/walks.json?all=true"
-    console.log "Ajax url: #{url}"
+    # console.log "Ajax url: #{url}"
     $.getJSON(url, (walks) =>
       @createInfoBubble(walk) for walk in walks
     )
@@ -84,7 +84,7 @@ class window.Sanpo.NearbyWalksMap
   # The walk must come from the JSON list as defined in addWalkMarkersToMap
   infoBubbleContentForWalk: (walk) ->
     content = "<div class='walkInfoBubble' id='walkInfoBubble_#{walk.id}'>"
-    content += "<a href='/walks/#{walk.id}' title='#{walk.title}'>"
+    content += "<a href='#{walk.link}' title='#{walk.title}'>"
     content += "<img src='#{walk.icon}' class='icon' />"
     content += "<div class='info'>"
     title = walk.title
