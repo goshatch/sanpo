@@ -4,6 +4,9 @@ class CommentsController < ApplicationController
     if @comment.user != @comment.walk.user and @comment.walk.user.mail_comment_notification
       Comment.delay.send_notification(@comment.id)
     end
+    if @comment.walk.comments.count > 1
+      Comment.delay.send_notification_to_previous_commenters(@comment.id, current_user.id)
+    end
   end
 
   def update

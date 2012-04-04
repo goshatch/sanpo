@@ -1,0 +1,11 @@
+Hi, #{@commenter.username}!
+
+#{@comment.user.username} has just posted a new reply after your comment on the walk "#{@comment.walk.title}".
+Check it out here:
+
+= walk_url(@comment.walk)
+
+Happy walking,
+Team SANPO
+
+PS: You can unsubscribe from these email notifications here: #{edit_user_registration_url}.

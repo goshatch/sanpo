@@ -1,0 +1,11 @@
+%p Hi, #{@commenter.username}!
+%p #{@comment.user.username} has just posted a new reply after your comment on the walk "#{@comment.walk.title}".
+%h3
+  = link_to("Click here to check it out!", walk_url(@comment.walk))
+
+%p
+  Happy walking,
+  %br
+  Team SANPO
+
+%p PS: You can unsubscribe from these email notifications #{link_to "here", edit_user_registration_url}.

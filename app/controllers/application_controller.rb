@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
       loc.ip_address = request.remote_ip
     end
     # loc.ip_address = "122.103.221.209"
-    loc.ip_address = "126.169.224.101"
+    loc.ip_address = "126.169.224.101" #FIXME wtf is this??
     loc.save
     session[:user_location_id] = loc.id
     loc.geocode

@@ -75,3 +75,5 @@ en:
   notifications:
     new_comment_on_walk:
       subject: "A new comment on your walk!"
+    new_comment_after_your_comment:
+      subject: "A new comment after your comment!"

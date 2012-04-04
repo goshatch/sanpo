@@ -22,6 +22,12 @@ class Notifications < ActionMailer::Base
     mail to: comment.walk.user.email
   end
 
+  def new_comment_after_your_comment(commenter, comment)
+    @commenter = commenter
+    @comment = comment
+    mail to: commenter.email
+  end
+
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #

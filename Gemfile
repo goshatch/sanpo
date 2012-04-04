@@ -42,10 +42,14 @@ gem "oa-oauth", :require => "omniauth/oauth"
 gem "geocoder", :git => "git://github.com/alexreisner/geocoder.git"
 
 group :development, :test do
-  # To use debugger
-  gem 'ruby-debug19', :require => 'ruby-debug'
+  # # To use debugger
+  # gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'growl', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'guard-rspec'
+  gem 'guard-livereload'
 end
 
 # Background jobs
