@@ -46,8 +46,8 @@ group :development, :test do
   # gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'rspec'
   gem 'rspec-rails'
-  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
-  gem 'growl', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'rb-fsevent', :require => false
+  gem 'growl', :require => false
   gem 'guard-rspec'
   gem 'guard-livereload'
 end
