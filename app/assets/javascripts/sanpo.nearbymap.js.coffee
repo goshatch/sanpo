@@ -1,7 +1,7 @@
 if !window.Sanpo
   window.Sanpo = {}
 
-class window.Sanpo.NearbyWalksMap
+class window.Sanpo.NearbyWalksMap extends BaseMap
   options:
     centerLat: 0
     centerLng: 0
@@ -44,6 +44,8 @@ class window.Sanpo.NearbyWalksMap
       buttonText: "Search"
     @geocoder = new Sanpo.MapSearchField(@gmap, geocoderOptions)
     window.Sanpo.geolocateAndCenterMap(@gmap)
+
+    super
 
   addWalkMarkersToMap: ->
     # url = "/walks.json"

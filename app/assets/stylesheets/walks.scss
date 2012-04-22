@@ -192,6 +192,44 @@
   }
 }
 
+#map_zoom_controls_container {
+  position: relative;
+  .map_zoom_controls {
+    position: absolute;
+    top: 200px;
+    z-index: 9999;
+    -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    a {
+      width: 40px;
+      height: 40px;
+      display: block;
+      line-height: 40px;
+      text-align: center;
+      background-color: #eee;
+      font-size: 22px;
+      border-top: 1px solid #fff;
+      border-bottom: 1px solid #ccc;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      &.zoomIn {
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+      }
+      &.zoomOut {
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+      }
+      &:hover {
+        text-decoration: none;
+        background-color: #ddd;
+      }
+    }
+  }
+}
+
 .walkInfoBubble {
   display: block;
   height: 32px;

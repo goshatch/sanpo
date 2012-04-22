@@ -11,7 +11,7 @@
       <% @walk.waypoints.each do |waypoint| %>waypoints.push({lat: '<%= waypoint.latitude %>', lon: '<%= waypoint.longitude %>'});
       <% end %>
       $(function(){
-        map = new Sanpo.WalkMap({
+        map = new window.Sanpo.WalkMap({
           walkId: "<%= @walk.id %>",
           centerLat: "<%= @walk.center_coordinates[:latitude] %>",
           centerLng: "<%= @walk.center_coordinates[:longitude] %>",

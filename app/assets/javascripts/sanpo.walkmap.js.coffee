@@ -3,7 +3,7 @@
 if !window.Sanpo
   window.Sanpo = {}
 
-class window.Sanpo.WalkMap
+class window.Sanpo.WalkMap extends window.Sanpo.Map
   # Default options
   # TODO: get sensible defaults for centerLat/Lng
   options:
@@ -40,8 +40,7 @@ class window.Sanpo.WalkMap
       panControl: false
       scrollwheel: false
       streetViewControl: false
-      zoomControlOptions:
-        position: google.maps.ControlPosition.LEFT_CENTER
+      zoomControl: false
     @gmap = new google.maps.Map(document.getElementById('map_canvas'), mapOptions)
 
     # Initialize the polyline to draw our route
@@ -72,6 +71,8 @@ class window.Sanpo.WalkMap
       @toggleEditMode()
       event.stopPropagation()
       event.preventDefault()
+
+    super
 
   # If we're creating a new walk, enable the save button if there are at least 2 waypoints
   mapClickHandler: (event) =>
