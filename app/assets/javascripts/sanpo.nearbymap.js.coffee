@@ -1,7 +1,7 @@
 if !window.Sanpo
   window.Sanpo = {}
 
-class window.Sanpo.NearbyWalksMap extends BaseMap
+class window.Sanpo.NearbyWalksMap extends window.Sanpo.Map
   options:
     centerLat: 0
     centerLng: 0
