@@ -2,47 +2,23 @@ if !window.Sanpo
   window.Sanpo = {}
 
 class window.Sanpo.NearbyWalksMap extends window.Sanpo.Map
-  options:
-    centerLat: 0
-    centerLng: 0
-    zoomLevel: 12
+  _options:
     search: null
 
   constructor: (options) ->
-    if options
-      if options.centerLat != undefined
-        @options.centerLat = options.centerLat
-      if options.centerLng != undefined
-        @options.centerLng = options.centerLng
-      if options.zoomLevel != undefined
-        @options.zoomLevel = options.zoomLevel
-      if options.search != undefined
-        @options.search = options.search
-        console.log "Setting search to #{options.search}"
+    $.extend(@options, @_options)
+    $.extend(@options, options)
 
-    @centerPoint = new google.maps.LatLng(@options.centerLat, @options.centerLng)
-    mapOptions =
-      zoom: @options.zoomLevel
-      center: @centerPoint
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-      panControl: false
-      scrollwheel: false
-      streetViewControl: false
-      zoomControl: false
-    console.log "Creating a map centered on: #{mapOptions.center.lat()}x#{mapOptions.center.lng()}"
-    @gmap = new google.maps.Map(document.getElementById('map_canvas'), mapOptions)
-    console.log "New map is centered on: #{@gmap.center.lat()}x#{@gmap.center.lng()}"
-    google.maps.event.addListener(@gmap, 'center_changed', =>
-      console.log "Now the map is centered on: #{@gmap.center.lat()}x#{@gmap.center.lng()}"
-    )
-    # @bounds = new google.maps.LatLngBounds()
+    @initMap()
+
     @addWalkMarkersToMap()
     geocoderOptions =
       placeholder: "Where do you want to go?"
       cssClass: "large"
       buttonText: "Search"
     @geocoder = new Sanpo.MapSearchField(@gmap, geocoderOptions)
-    window.Sanpo.geolocateAndCenterMap(@gmap)
+
+    @geolocateAndCenterMap()
 
     super
 

@@ -4,44 +4,17 @@ if !window.Sanpo
   window.Sanpo = {}
 
 class window.Sanpo.WalkMap extends window.Sanpo.Map
-  # Default options
-  # TODO: get sensible defaults for centerLat/Lng
-  options:
+  _options:
     waypoints: []
-    centerLat: 35.640
-    centerLng: 139.667
     zoomLevel: 9
     isNewWalk: false
     walkId: -1
 
   constructor: (options) ->
-    # If we get passed an options object, set options accordingly
-    # Options that haven't been explicitly set use the default values
-    if options
-      if options.waypoints != undefined
-        @options.waypoints = options.waypoints
-      if options.centerLat != undefined
-        @options.centerLat = options.centerLat
-      if options.centerLng != undefined
-        @options.centerLng = options.centerLng
-      if options.isNewWalk != undefined
-        @options.isNewWalk = options.isNewWalk
-      if options.walkId != undefined
-        @options.walkId = options.walkId
-      if options.zoomLevel != undefined
-        @options.zoomLevel = options.zoomLevel
+    $.extend(@options, @_options)
+    $.extend(@options, options)
 
-    # Initialize the map itself
-    @centerPoint = new google.maps.LatLng(@options.centerLat, @options.centerLng)
-    mapOptions =
-      zoom: @options.zoomLevel
-      center: @centerPoint
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-      panControl: false
-      scrollwheel: false
-      streetViewControl: false
-      zoomControl: false
-    @gmap = new google.maps.Map(document.getElementById('map_canvas'), mapOptions)
+    @initMap()
 
     # Initialize the polyline to draw our route
     polyOptions =
@@ -50,6 +23,8 @@ class window.Sanpo.WalkMap extends window.Sanpo.Map
       strokeWeight: 5
     @poly = new google.maps.Polyline(polyOptions)
     @poly.setMap(@gmap)
+
+    super
 
     # if a path already exists, build it here and zoom the map to fit it
     if @options.waypoints.length > 0
@@ -72,7 +47,6 @@ class window.Sanpo.WalkMap extends window.Sanpo.Map
       event.stopPropagation()
       event.preventDefault()
 
-    super
 
   # If we're creating a new walk, enable the save button if there are at least 2 waypoints
   mapClickHandler: (event) =>
