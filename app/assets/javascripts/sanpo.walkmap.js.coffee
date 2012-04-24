@@ -38,6 +38,7 @@ class window.Sanpo.WalkMap extends window.Sanpo.Map
     # If this is a new walk form, we should switch to edit mode right away
     if @options.isNewWalk
       $('.editButtonContainer').hide()
+      @geolocateAndCenterMap()
       @geocoder = new Sanpo.MapSearchField(@gmap)
       @setEditMode(true)
 
