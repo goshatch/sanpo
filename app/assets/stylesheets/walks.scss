@@ -228,7 +228,16 @@
       }
       &:hover {
         text-decoration: none;
+        background-color: #0064bc;
+        background-image: -webkit-linear-gradient(top, #07b, #04b);
+        background-image: linear-gradient(top, #06a, #03a);
+      }
+      &.limitReached {
         background-color: #ddd;
+        background-image: -webkit-linear-gradient(top, #ddd, #ccc);
+        background-image: linear-gradient(top, #ddd, #ccc);
+        border-bottom: 1px solid #999;
+        color: #999;
       }
     }
   }
