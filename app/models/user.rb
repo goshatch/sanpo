@@ -20,4 +20,8 @@ class User < ActiveRecord::Base
     login = conditions.delete(:login)
     where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.strip.downcase }]).first
   end
+
+  def to_params
+    "#{username}".parameterize
+  end
 end
