@@ -28,8 +28,7 @@ class window.Sanpo.NearbyWalksMap extends window.Sanpo.Map
       panControl: false
       scrollwheel: false
       streetViewControl: false
-      zoomControlOptions:
-        position: google.maps.ControlPosition.LEFT_CENTER
+      zoomControl: false
     console.log "Creating a map centered on: #{mapOptions.center.lat()}x#{mapOptions.center.lng()}"
     @gmap = new google.maps.Map(document.getElementById('map_canvas'), mapOptions)
     console.log "New map is centered on: #{@gmap.center.lat()}x#{@gmap.center.lng()}"

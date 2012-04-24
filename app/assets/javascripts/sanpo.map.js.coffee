@@ -3,7 +3,12 @@ if !window.Sanpo
 
 class window.Sanpo.Map
   constructor: ->
+    console.log "super called!"
     $('.map_zoom_controls .zoomIn').click (event) =>
-      console.log("Attempting to zoom map")
+      event.stopPropagation()
+      event.preventDefault()
+      @gmap.setZoom(@gmap.getZoom() + 1)
     $('.map_zoom_controls .zoomOut').click (event) =>
-      console.log("Attempting to unzoom map")
+      event.stopPropagation()
+      event.preventDefault()
+      @gmap.setZoom(@gmap.getZoom() - 1)
