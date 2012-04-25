@@ -1,4 +1,18 @@
-%h1 Hello, #{@user.username}, lol!
-%p Total walked #{@user.total_km_walked} km
-
-= render :partial => 'walks/list', :locals => {:walks => @walks}
+:ruby
+  name = @profile.real_name.empty? ? @user.username : @profile.real_name
+.container.profile
+  .row
+    .userInfo.span6
+      %h1 #{name}
+      %p Total walked #{@user.total_km_walked} km
+      %p
+        %strong Bio:
+        = @profile.bio
+      %p
+        %strong Twitter:
+        = link_to("@#{@profile.twitter}", "http://twitter.com/#{@profile.twitter}")
+      %p
+        %strong Website:
+        = link_to(@profile.website, @profile.website)
+    .walkList.span8
+      = render :partial => 'walks/list', :locals => {:walks => @walks}
