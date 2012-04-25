@@ -1,1 +1,4 @@
 %h1 Hello, #{@user.username}, lol!
+%p Total walked #{@user.total_km_walked} km
+
+= render :partial => 'walks/list', :locals => {:walks => @walks}

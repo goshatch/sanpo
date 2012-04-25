@@ -21,7 +21,12 @@ class User < ActiveRecord::Base
     where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.strip.downcase }]).first
   end
 
-  def to_params
-    "#{username}".parameterize
+  def total_km_walked
+    walks = self.walks
+    total_m = 0
+    walks.each do |walk|
+      total_m += walk.length
+    end
+    total_m / 1000
   end
 end
