@@ -59,7 +59,7 @@
       .walk_photos
         %h2
           Photos (#{@walk.photos.count})
-          - if current_user and current_user == @walk.user and @walk.photos.count < 3
+          - if current_user and current_user == @walk.user and @walk.photos.count < 10
             %small= link_to t("photos.new.upload_new_photo"), "#", :class => "btn info small", :id => "walkPageUploadPhotoButton", :data => {"controls-modal" => "uploadPhoto", :backdrop => "static"}
             = render :partial => "photos/new"
         - if @walk.photos
