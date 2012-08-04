@@ -1,3 +1,13 @@
 .container.profile {
   margin-top: 10px;
 }
+
+.user_name {
+  position: relative;
+  padding-left: 83px;
+  .avatar {
+    position: absolute;
+    top:0px;
+    left: 0px;
+  }
+}

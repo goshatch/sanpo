@@ -3,7 +3,10 @@
 .container.profile
   .row
     .userInfo.span6
-      %h1 #{name}
+      .user_name
+        .avatar
+          = avatar_image_tag(@user)
+        %h1.span #{name}
       %p Total walked #{@user.total_km_walked} km
       %p
         %strong Bio:
