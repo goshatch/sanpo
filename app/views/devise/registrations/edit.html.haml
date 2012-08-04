@@ -1,4 +1,19 @@
-%h2 Edit #{resource_name.to_s.humanize}
+%h2 My profile
+= form_for resource.profile, :url => profile_path(resource.profile) do |f|
+  .clearfix
+    = f.label :real_name
+    .input.profileRealName= resource.profile.real_name
+  .clearfix
+    = f.label :bio
+    .input.profileBio= resource.profile.bio
+  .clearfix
+    = f.label :twitter
+    .input.profileTwitter= resource.profile.twitter
+  .clearfix
+    = f.label :website
+    .input.profileWebsite= resource.profile.website
+
+%h2 My account
 = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
   .errors= devise_error_messages!
   = field_set_tag do
