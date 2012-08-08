@@ -1,0 +1,20 @@
+.page-header
+  %h2 My profile
+= form_for resource.profile, :url => profile_path(resource.profile) do |f|
+  .clearfix
+    = f.label :real_name
+    .input.profileRealName= f.text_field :real_name
+  .clearfix
+    = f.label :bio
+    .input.input-xlarge.profileBio= f.text_area :bio, :size => "30x5"
+  .clearfix
+    = f.label :twitter
+    .input.input-prepend.profileTwitter
+      %span.add-on @
+      = f.text_field :twitter
+      %span.help-block We will use your Twitter avatar on SANPO!
+  .clearfix
+    = f.label :website
+    .input.profileWebsite= f.text_field :website
+  .actions
+    = f.submit "Update", :class => "btn primary"

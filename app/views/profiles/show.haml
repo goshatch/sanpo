@@ -8,14 +8,17 @@
           = avatar_image_tag(@user)
         %h1.span #{name}
       %p Total walked #{@user.total_km_walked} km
-      %p
-        %strong Bio:
-        = @profile.bio
-      %p
-        %strong Twitter:
-        = link_to("@#{@profile.twitter}", "http://twitter.com/#{@profile.twitter}")
-      %p
-        %strong Website:
-        = link_to(@profile.website, @profile.website)
+      - if @profile.bio.present?
+        %p
+          %strong Bio:
+          = @profile.bio
+      - if @profile.twitter.present?
+        %p
+          %strong Twitter:
+          = link_to("@#{@profile.twitter}", "http://twitter.com/#{@profile.twitter}")
+      - if @profile.website.present?
+        %p
+          %strong Website:
+          = link_to(@profile.website, @profile.website)
     .walkList.span8
       = render :partial => 'walks/list', :locals => {:walks => @walks}

@@ -19,7 +19,7 @@ module ApplicationHelper
 
   def avatar_image_tag(user)
     profile = user.profile
-    if profile.twitter
+    if profile.twitter.present?
       image_tag "https://api.twitter.com/1/users/profile_image?screen_name=#{profile.twitter}&size=bigger"
     else
       image_tag "default_avatar.png"

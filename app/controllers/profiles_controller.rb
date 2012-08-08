@@ -10,4 +10,13 @@ class ProfilesController < ApplicationController
     @profile.user = current_user
     @profile.save
   end
+
+  def update
+    @profile = current_user.profile
+    if @profile.update_attributes(params[:profile])
+      redirect_to edit_user_registration_path
+    else
+      render :partial => 'edit'
+    end
+  end
 end

@@ -1,19 +1,6 @@
-%h2 My profile
-= form_for resource.profile, :url => profile_path(resource.profile) do |f|
-  .clearfix
-    = f.label :real_name
-    .input.profileRealName= resource.profile.real_name
-  .clearfix
-    = f.label :bio
-    .input.profileBio= resource.profile.bio
-  .clearfix
-    = f.label :twitter
-    .input.profileTwitter= resource.profile.twitter
-  .clearfix
-    = f.label :website
-    .input.profileWebsite= resource.profile.website
-
-%h2 My account
+= render 'profiles/edit'
+.page-header
+  %h2 My account
 = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
   .errors= devise_error_messages!
   = field_set_tag do
@@ -48,5 +35,4 @@
     .actions
       = f.submit "Update", :class => "btn primary"
 %h3 Cancel my account
-%p Unhappy? #{link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete}.
-%p= link_to "Back", :back
+%p Unhappy? #{link_to "Cancel your account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete}.
