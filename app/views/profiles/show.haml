@@ -20,5 +20,8 @@
         %p
           %strong Website:
           = link_to(@profile.website, @profile.website)
+      - if @user == current_user
+        %p
+          = link_to("Edit my profile", edit_user_registration_path)
     .walkList.span8
       = render :partial => 'walks/list', :locals => {:walks => @walks}
