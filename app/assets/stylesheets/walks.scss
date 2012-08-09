@@ -6,7 +6,7 @@
   li {
     position: relative;
     border-bottom: 1px solid #eee;
-    a {
+    a.walk_list_link {
       display: block;
       padding: 10px 10px 10px 84px;
       min-height: 64px;
@@ -15,7 +15,7 @@
     a:hover {
       text-decoration: none;
     }
-    img {
+    img.walk_thumbnail {
       position: absolute;
       top: 10px;
       left: 10px;

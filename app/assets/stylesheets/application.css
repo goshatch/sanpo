@@ -104,3 +104,8 @@ body {
   left: 10px;
   top: 8px;
 }
+
+.username_with_avatar img {
+  margin-top: -6px;
+  margin-bottom: -7px;
+}
