@@ -1,5 +1,5 @@
 :ruby
-  name = @profile.real_name.empty? ? @user.username : @profile.real_name
+  name = @profile.real_name.present? ? @profile.real_name : @user.username
 .container.profile
   .row
     .userInfo.span6
