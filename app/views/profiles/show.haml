@@ -6,7 +6,7 @@
       .userName
         .avatar
           = avatar_image_tag(@user)
-        %h1.span #{name}
+        %h1.span= name
       %p Total walked #{@user.total_km_walked} km
       - if @profile.bio.present?
         %p
@@ -24,4 +24,7 @@
         %p
           = link_to("Edit my profile", edit_user_registration_path)
     .walkList.span8
+      %h3
+        = @user.username
+        's walks
       = render :partial => 'walks/list', :locals => {:walks => @walks}
