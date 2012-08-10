@@ -1,6 +1,6 @@
 - if defined?(only)
   - walks = walks[0..(only-1)]
-- if walks
+- unless walks.empty?
   %ul.walks.list
     - walks.each do |walk|
       - my_draft_walk = (!walk.published? and walk.user == current_user)
@@ -23,3 +23,5 @@
               = comments_count_text(walk.comments.count)
             - if my_draft_walk
               .draft Draft
+- else
+  .noWalks There are no walks here, sorry!

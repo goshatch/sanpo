@@ -109,3 +109,8 @@ body {
   margin-top: -6px;
   margin-bottom: -7px;
 }
+
+.noWalks {
+  padding: 20px 0px;
+  color: #999
+}
