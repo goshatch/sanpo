@@ -7,7 +7,11 @@
         .avatar
           = avatar_image_tag(@user)
         %h1.span= name
-      %p Total walked #{@user.total_km_walked} km
+      .totalWalked.clearfix
+        Total walked:
+        %span.distance
+          = @user.total_km_walked
+          km
       - if @profile.bio.present?
         %p
           %strong Bio:
@@ -22,7 +26,7 @@
           = link_to(@profile.website, @profile.website)
       - if @user == current_user
         %p
-          = link_to("Edit my profile", edit_user_registration_path)
+          = link_to("Edit my profile", edit_user_registration_path, :class => "btn btn-small")
     .walkList.span8
       %h3
         = @user.username
