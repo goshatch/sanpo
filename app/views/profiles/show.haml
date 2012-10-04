@@ -1,0 +1,33 @@
+:ruby
+  name = @profile.real_name.present? ? @profile.real_name : @user.username
+.container.profile
+  .row
+    .userInfo.span6
+      .userName
+        .avatar
+          = avatar_image_tag(@user)
+        %h1.span= name
+      .totalWalked.clearfix
+        Total walked:
+        %span.distance
+          = @user.total_km_walked
+          km
+      - if @profile.bio.present?
+        %p
+          %strong Bio:
+          = @profile.bio
+      - if @profile.twitter.present?
+        %p
+          %strong Twitter:
+          = link_to("@#{@profile.twitter}", "http://twitter.com/#{@profile.twitter}")
+      - if @profile.website.present?
+        %p
+          %strong Website:
+          = link_to(@profile.website, @profile.website)
+      - if @user == current_user
+        %p
+          = link_to("Edit my profile", edit_user_registration_path, :class => "btn btn-small")
+    .walkList.span8
+      %h3
+        = "#{@user.username}’s walks"
+      = render :partial => 'walks/list', :locals => {:walks => @walks}

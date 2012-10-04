@@ -9,8 +9,12 @@
       %ul.nav.secondary-nav
         %li.blogLink= link_to(t("top.navigation.blog"), "http://blog.sanpo.cc")
         - if user_signed_in?
+          %li.profileLink
+            = link_to("/u/#{current_user.username}") do
+              = avatar_image_tag(current_user, "24x24")
+              = current_user.username
           %li.dropdown{:data => {:dropdown => "dropdown"}}
-            = link_to(current_user.email, "#", {:class => "dropdown-toggle accountDropdownToggle"})
+            = link_to("Account", "#", {:class => "dropdown-toggle accountDropdownToggle"})
             %ul.dropdown-menu
               %li.editAccountLink= link_to(t("top.navigation.account.edit"), edit_user_registration_path)
               %li.divider
