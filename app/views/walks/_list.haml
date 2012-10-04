@@ -1,23 +1,27 @@
 - if defined?(only)
   - walks = walks[0..(only-1)]
-- if walks
+- unless walks.empty?
   %ul.walks.list
     - walks.each do |walk|
       - my_draft_walk = (!walk.published? and walk.user == current_user)
       - if walk.published? or my_draft_walk
         %li{:id => "walk#{walk.id}", :data => {:walk_for_map => true, :walk_id => "#{walk.id}"}, :class => my_draft_walk ? "draft" : "published"}
-          = link_to walk_path(walk) do
+          = link_to walk_path(walk), :class => "walk_list_link" do
             %h3= walk.title
             - if walk.photos.count >= 1
-              =image_tag walk.photos.first.image.url(:thumb)
+              =image_tag walk.photos.first.image.url(:thumb), :class => "walk_thumbnail"
             - else
-              =image_tag "default_walk_thumbnail.jpg"
+              =image_tag "default_walk_thumbnail.jpg", :class => "walk_thumbnail"
             .meta_date
               = t("general.time_ago", :time => time_ago_in_words(walk.created_at))
-              %span.user_info= t("user.by", :name => walk.user.username)
+              %span.user_info
+                = t("user.by")
+                = walk.user.username
             .meta_comments
               = walk.length_in_km
               &nbsp;
               = comments_count_text(walk.comments.count)
             - if my_draft_walk
               .draft Draft
+- else
+  .noWalks There are no walks here, sorry!

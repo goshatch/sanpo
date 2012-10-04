@@ -1,7 +1,10 @@
 .comment{:id => "comment#{comment.id}"}
   .body= best_in_place_if((comment.user == current_user), comment, :text, :path => walk_comment_path(comment.walk.id, comment.id), :type => :textarea, :inner_class => "comment_edit_form")
   .meta
-    %span.author Added by #{comment.user.username},
+    %span.author
+      Added by
+      = render "shared/username_with_avatar", :user => comment.user
+      ,
     %span.timestamp
       %span.created #{time_ago_in_words comment.created_at} ago
       - if comment.created_at != comment.updated_at

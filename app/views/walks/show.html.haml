@@ -41,10 +41,11 @@
     %h1
       = @walk.title
       .walkLength= @walk.length_in_km
-      - username = (@walk.user == current_user) ? "you" : @walk.user.username
       .walkCreator
-        = t("walks.show.by", {:name => username})
+        = t("walks.show.added_by")
+        = render "shared/username_with_avatar", :user => @walk.user
         - if @walk.user == current_user
+          |
           = link_to "(Delete?)", walk_path(@walk), :method => :delete, :confirm => "Are you sure you want to delete this walk? This cannot be undone."
 = render :partial => 'map'
 .container

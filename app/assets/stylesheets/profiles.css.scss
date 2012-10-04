@@ -1,0 +1,23 @@
+.container.profile {
+  margin-top: 10px;
+}
+
+.userName {
+  position: relative;
+  padding-left: 83px;
+  min-height: 83px;
+  .avatar {
+    position: absolute;
+    top:0px;
+    left: 0px;
+  }
+}
+
+.totalWalked {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 20px 0px;
+  text-align: center;
+  .distance { font-weight: bold; }
+}

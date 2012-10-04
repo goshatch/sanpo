@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :walks, :dependent => :nullify
   has_many :comments, :dependent => :nullify
+  has_one :profile, :dependent => :destroy
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -19,5 +20,14 @@ class User < ActiveRecord::Base
     conditions = warden_conditions.dup
     login = conditions.delete(:login)
     where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.strip.downcase }]).first
+  end
+
+  def total_km_walked
+    walks = self.walks
+    total_m = 0
+    walks.each do |walk|
+      total_m += walk.length
+    end
+    total_m / 1000
   end
 end

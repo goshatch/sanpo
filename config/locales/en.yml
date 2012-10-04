@@ -56,7 +56,7 @@ en:
       notes: "Photographer's notes"
       link: "More photos"
       link_label: "See the gallery"
-      by: "Added by %{name}"
+      added_by: "Added by"
     new:
       new_photowalk: "Report your photowalk"
   photos:
@@ -67,7 +67,7 @@ en:
       delete_this_photo: "Delete this photo"
       confirmation: "Really delete this?"
   user:
-    by: "by %{name}"
+    by: "by"
   activerecord:
       attributes:
         user:

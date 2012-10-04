@@ -94,3 +94,23 @@ body {
 
 .profileUserName { margin-top: 7px; }
 
+.nav .profileLink a {
+  position: relative;
+  padding-left: 42px;
+}
+
+.nav .profileLink a img {
+  position: absolute;
+  left: 10px;
+  top: 8px;
+}
+
+.username_with_avatar img {
+  margin-top: -6px;
+  margin-bottom: -7px;
+}
+
+.noWalks {
+  padding: 20px 0px;
+  color: #999
+}
