@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  after_create :generate_empty_profile
+
   # Virtual attribute for authenticating by either username or email
   attr_accessor :login
 
@@ -29,5 +31,11 @@ class User < ActiveRecord::Base
       total_m += walk.length
     end
     total_m / 1000
+  end
+
+  def generate_empty_profile
+    profile = Profile.new
+    profile.user = self
+    profile.save
   end
 end
