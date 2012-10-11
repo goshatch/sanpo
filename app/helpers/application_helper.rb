@@ -20,9 +20,9 @@ module ApplicationHelper
   def avatar_image_tag(user, size = "73x73")
     profile = user.profile
     if profile and profile.twitter.present?
-      image_tag "https://api.twitter.com/1/users/profile_image?screen_name=#{profile.twitter}&size=bigger", :size => size
+      image_tag "https://api.twitter.com/1/users/profile_image?screen_name=#{profile.twitter}&size=bigger", :size => size, :class => 'avatar'
     else
-      image_tag "default_avatar.png", :size => size
+      image_tag "default_avatar.png", :size => size, :class => 'avatar defaultAvatar'
     end
   end
 end

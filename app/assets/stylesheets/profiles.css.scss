@@ -1,5 +1,5 @@
 .container.profile {
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .userName {
@@ -20,4 +20,8 @@
   margin: 20px 0px;
   text-align: center;
   .distance { font-weight: bold; }
+}
+
+.topbar .avatar {
+  margin-bottom: -3px;
 }
