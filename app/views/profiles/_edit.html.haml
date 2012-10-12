@@ -1,5 +1,13 @@
 .page-header
   %h2 My profile
+
+= image_tag resource.profile.avatar.url(:thumb)
+
+= form_for resource.profile, :url => profile_path(resource.profile), :html => { :multipart => true } do |f|
+  = f.file_field :avatar
+  = f.submit 'Upload', :class => 'btn'
+
+
 = form_for resource.profile, :url => profile_path(resource.profile) do |f|
   .clearfix
     = f.label :real_name
