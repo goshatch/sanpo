@@ -1,5 +1,5 @@
 class WalksController < ApplicationController
-  before_filter :authenticate_user!, :only => [:new, :create, :edit, :update_waypoints, :update]
+  before_filter :authenticated?, :only => [:new, :create, :edit, :update_waypoints, :update]
   respond_to :html, :json
 
   def index
@@ -57,7 +57,7 @@ class WalksController < ApplicationController
 
   def update_waypoints
     @walk = Walk.find(params[:id])
-    raise "Permission denied" unless @walk.user == current_user
+    raise ApplicationController::AccessDenied unless @walk.user == current_user
     parsed_json = JSON.parse(params[:waypoints])
     if parsed_json
       @walk.waypoints.destroy_all
@@ -77,7 +77,7 @@ class WalksController < ApplicationController
 
   def publish
     @walk = Walk.find(params[:id])
-    raise "Permission denied" unless @walk.user == current_user
+    raise ApplicationController::AccessDenied unless @walk.user == current_user
     if @walk.photos.count > 0
       @success = true
       @walk.published = true
@@ -90,19 +90,19 @@ class WalksController < ApplicationController
 
   def update
     @walk = Walk.find(params[:id])
-    raise "Permission denied" unless @walk.user == current_user
+    raise ApplicationController::AccessDenied unless @walk.user == current_user
     @walk.update_attributes(params[:walk])
     respond_with_bip(@walk)
   end
 
   def edit
     @walk = Walk.find(params[:id])
-    raise "Permission denied" unless @walk.user == current_user
+    raise ApplicationController::AccessDenied unless @walk.user == current_user
   end
 
   def destroy
     @walk = Walk.find(params[:id])
-    raise "Permission denied" unless @walk.user == current_user
+    raise ApplicationController::AccessDenied unless @walk.user == current_user
     @walk.destroy
     redirect_to walks_path
   end

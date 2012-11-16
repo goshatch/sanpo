@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
 
   # Virtual attribute for authenticating by either username or email
   attr_accessor :login
+  validates :email, :presence => true, :uniqueness => {:case_sensitive => false}
+  validates :username, :presence => true, :uniqueness => {:case_sensitive => false}
 
   # Setup Geocoder
   geocoded_by :current_sign_in_ip
@@ -33,6 +35,7 @@ class User < ActiveRecord::Base
     total_m / 1000
   end
 
+  private
   def generate_empty_profile
     profile = Profile.new
     profile.user = self

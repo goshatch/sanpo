@@ -1,5 +1,6 @@
 class PhotosController < ApplicationController
   respond_to :html, :js
+  before_filter :authenticated?
 
   def new
   end
@@ -7,7 +8,7 @@ class PhotosController < ApplicationController
   def create
     @photo = Photo.create(params[:photo])
     if @photo.errors.empty?
-      redirect_to walk_path(params[:walk_id])
+      redirect_to walk_path(Walk.find(params[:walk_id]))
     else
       render 'photos/new'
     end

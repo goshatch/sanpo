@@ -1,5 +1,15 @@
 class ApplicationController < ActionController::Base
+  class AccessDenied < StandardError; end
+  rescue_from AccessDenied, :with => :access_denied
   protect_from_forgery
+  
+  def access_denied
+    redirect_to "/401.html"
+  end
+  
+  def authenticated?
+    authenticate_user! unless user_signed_in? #this is Devise's method
+  end
 
   def after_sign_in_path_for(resource)
     path = ''
@@ -14,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_user_location
-    if session[:user_location_id]
+    if session[:user_location_id] && UserLocation.where(:id => session[:user_location_id]).exists?
       loc = UserLocation.find(session[:user_location_id])
     else
       loc = UserLocation.new
