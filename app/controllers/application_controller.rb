@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
   
   def authenticated?
-    redirect_to :root unless user_signed_in? #this is Devise's method
+    authenticate_user! unless user_signed_in? #this is Devise's method
   end
 
   def after_sign_in_path_for(resource)
