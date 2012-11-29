@@ -65,6 +65,8 @@ gem 'postmark-rails', '0.4.0'
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
+  gem "factory_girl"
+  gem "factory_girl_rails"
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'headless'

@@ -1,5 +1,9 @@
 require 'spec_helper'
 
 describe Comment do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "#send_notification" do
+    it "should find a comment if it exists and send a notification" do
+      
+    end
+  end
 end
