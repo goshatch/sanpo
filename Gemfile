@@ -32,6 +32,7 @@ gem "best_in_place", :git => "git://github.com/bernat/best_in_place.git"
 
 # Deploy with Capistrano
 gem 'capistrano'
+gem 'rvm-capistrano'
 gem 'capistrano_colors'
 
 # User authentication
