@@ -1,11 +1,14 @@
 .page-header
   %h2 My profile
 
-= image_tag resource.profile.avatar.url(:thumb)
-
 = form_for resource.profile, :url => profile_path(resource.profile), :html => { :multipart => true } do |f|
-  = f.file_field :avatar
-  = f.submit 'Upload', :class => 'btn'
+  .clearfix
+    = f.label :avatar
+    .input
+      = avatar_image_tag(resource)
+      %br
+      = f.file_field :avatar
+      = f.submit 'Upload', :class => 'btn info'
 
 
 = form_for resource.profile, :url => profile_path(resource.profile) do |f|
@@ -20,7 +23,6 @@
     .input.input-prepend.profileTwitter
       %span.add-on @
       = f.text_field :twitter
-      %span.help-block We will use your Twitter avatar on SANPO!
   .clearfix
     = f.label :website
     .input.profileWebsite= f.text_field :website
