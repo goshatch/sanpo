@@ -33,7 +33,6 @@ namespace :deploy do
   task :stop do ; end
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-    run "rake precreate_profiles"
   end
 
   desc "Symlink shared config files and folders for each release"
