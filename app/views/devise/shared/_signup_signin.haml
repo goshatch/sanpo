@@ -9,7 +9,6 @@
         %br
         %strong Sign in!
       = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-        .errors= devise_error_messages!
         = field_set_tag do
           .clearfix
             = f.label :login
