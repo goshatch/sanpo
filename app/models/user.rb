@@ -11,7 +11,6 @@ class User < ActiveRecord::Base
 
   # Virtual attribute for authenticating by either username or email
   attr_accessor :login
-  validates :email, :presence => true, :uniqueness => {:case_sensitive => false}
   validates :username, :presence => true, :uniqueness => {:case_sensitive => false}
 
   # Setup Geocoder
