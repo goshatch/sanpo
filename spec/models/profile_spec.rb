@@ -1,5 +1,10 @@
 require 'spec_helper'
 
 describe Profile do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe ".save!" do
+    let(:valid_profile){ FactoryGirl.build(:profile) }
+    it "should save a valid profile" do
+      valid_profile.save!.should be_true
+    end
+  end
 end
