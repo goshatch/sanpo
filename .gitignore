@@ -6,3 +6,5 @@ tmp/
 .rvmrc
 .DS_Store
 public/system
+*~
+*.swp

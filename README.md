@@ -13,8 +13,12 @@ In most cases:
 git clone git://github.com/gueorgui/sanpo.git
 cd sanpo
 bundle install
-rail s
+rails s
+rake db:migrate
 open "http://localhost:3000"
+
+# Ubuntu/Debian users might want install packages for MySQL and WebKit
+sudo apt-get install qt4-dev-tools libqt4-dev libqt4-core libqt4-gui libmysql-ruby libmysqlclient-dev
 ```
 
 You will also need to configure email delivery to match your

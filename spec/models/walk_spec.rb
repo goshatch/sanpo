@@ -1,5 +1,10 @@
 require 'spec_helper'
 
 describe Walk do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:valid_walk) { FactoryGirl.build(:walk)}
+  it "should save valid walk" do
+    valid_walk.save!.should be_true
+  end
+
+
 end
