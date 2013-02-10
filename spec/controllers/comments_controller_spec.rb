@@ -11,7 +11,7 @@ describe CommentsController do
     end
     context "an authenticated user" do
       let(:walk) { FactoryGirl.create(:walk) }
-      let(:user) { FactoryGirl.create(:user) }
+      let(:user) { FactoryGirl.create(:valid_user) }
       let(:valid_params) { { :comment => { :walk_id => walk.id, :user_id => user.id }, :format => 'js' } }
       it "should not redirect" do
         sign_in :user, user
@@ -29,7 +29,7 @@ describe CommentsController do
       end
     end
     context "an authenticated user" do
-      let(:user) { FactoryGirl.create(:user) }
+      let(:user) { FactoryGirl.create(:valid_user) }
       let(:comment) { FactoryGirl.create(:comment, :user => user) }
       let(:new_text) { 'Fun stuff!' }
       let(:valid_params) { { :id => comment.id, :comment => { :text => new_text }, :format => 'js' } }
@@ -51,7 +51,7 @@ describe CommentsController do
       end
     end
     context "an authenticated user" do
-      let(:user) { FactoryGirl.create(:user) }
+      let(:user) { FactoryGirl.create(:valid_user) }
       let(:comment) { FactoryGirl.create(:comment, :user => user) }
       let(:valid_params) { { :id => comment.id, :format => 'js' } }
       it "should not redirect" do
