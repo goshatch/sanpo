@@ -29,5 +29,5 @@
           = link_to("Edit my profile", edit_user_registration_path, :class => "btn btn-small")
     .walkList.span8
       %h3
-        = "#{@user.username}'s walks"
+        = "#{@user.username}’s walks"
       = render :partial => 'walks/list', :locals => {:walks => @walks}
