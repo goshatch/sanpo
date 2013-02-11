@@ -6,13 +6,15 @@ describe User do
 
   before do @user = FactoryGirl.build(:valid_user) end
 
-  it { should respond_to(:username) }
-  it { should respond_to(:email) }
-  it { should respond_to(:encrypted_password) }
-  it { should respond_to(:password) }
-  it { should respond_to(:password_confirmation) }
-  it { should respond_to(:password_digest) }
-  it { should be_valid }
+  describe "Expected attributes" do
+    it { should respond_to(:username) }
+    it { should respond_to(:email) }
+    it { should respond_to(:encrypted_password) }
+    it { should respond_to(:password) }
+    it { should respond_to(:password_confirmation) }
+    it { should respond_to(:password_digest) }
+    it { should be_valid }
+  end
 
   describe ".save!" do
 
@@ -39,6 +41,27 @@ describe User do
     it { should_not be_valid }
   end
 
+  describe "when email format is invalid" do
+    it "should be invalid" do
+      invalid_emails = %w[user@dom,com user_at_dom.org example.user@dom.] 
+      # TODO: user@dom1+dom2.com user@dom1_dom2.com valid though emails are invalid
+      invalid_emails.each do |invalid_email|
+        @user.email = invalid_email
+        @user.should_not be_valid 
+      end      
+    end
+  end
+
+  describe "when email format is valid" do
+    it "should be valid" do
+      valid_emails = %w[user@dom.COM A_US-ER@f.b.org a+b@dom.cn na.sei@dom.co.jp]
+      valid_emails.each do |valid_email|
+        @user.email = valid_email
+        @user.should be_valid 
+      end      
+    end
+  end
+
   describe "when passwords are missing" do
     before do @user.password = @user.password_confirmation = " " end
     it { should_not be_valid }
@@ -51,7 +74,7 @@ describe User do
 
   describe "when password confirmation is nil" do
     before do @user.password_confirmation = nil end
-    it { should be_valid }
+    it { should be_valid } # TODO: is this OK?
   end
 
   describe "email with mixed case" do
