@@ -3,7 +3,7 @@
     %h1 Welcome to SANPO!
     %p Sign up or sign in to report walks, upload photos, and post comments.
   .row
-    .span7
+    .span7{:class=>"signin"}
       %h2
         Already registered?
         %br
@@ -26,7 +26,7 @@
           - if devise_mapping.omniauthable?
             - resource_class.omniauth_providers.each do |provider|
               = link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider)
-    .span7
+    .span7{:class=>"signup"}
       %h2
         Not a member yet?
         %br
