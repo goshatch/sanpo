@@ -1,5 +1,10 @@
 include ApplicationHelper
 
+def signin(user)
+  visit new_user_session_path
+  fillin_and_signin(user)
+end
+
 def fillin_and_signin(user)
   within ".signin" do
     fill_in "Username or email",  with: user.username

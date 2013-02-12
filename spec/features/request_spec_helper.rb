@@ -1,5 +1,6 @@
 shared_examples_for "sign-in page" do
   it { should have_content('Sign in!') }
+  it_should_behave_like "non-signed in user page"
 end
 
 shared_examples_for "sign-up page" do
