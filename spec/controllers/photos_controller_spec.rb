@@ -10,7 +10,7 @@ describe PhotosController do
       end
     end
     context "an authenticated user" do
-      let(:user) { FactoryGirl.create(:user) }
+      let(:user) { FactoryGirl.create(:valid_user) }
       it "should not redirect" do
         sign_in :user, user
         get :new
@@ -28,7 +28,7 @@ describe PhotosController do
     end
     context "an authenticated user" do
       let(:walk) { FactoryGirl.create(:walk) }
-      let(:user) { FactoryGirl.create(:user) }
+      let(:user) { FactoryGirl.create(:valid_user) }
       let(:valid_params) { { :walk_id => walk.id, :photo => { :image => 'xxx', :image_file_name => 'xxx.jpg' } } }
       context "submits a valid photo" do
         it "should redirect to the walk_path" do
@@ -48,7 +48,7 @@ describe PhotosController do
       end
     end
     context "an authenticated user" do
-      let(:user) { FactoryGirl.create(:user) }
+      let(:user) { FactoryGirl.create(:valid_user) }
       let(:walk) { FactoryGirl.create(:walk, :user => user) }
       let(:photo) { FactoryGirl.create(:photo, :walk => walk) }
       let(:valid_params) { { :id => photo.id, :format => 'js' } }

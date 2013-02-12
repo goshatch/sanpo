@@ -6,10 +6,17 @@ FactoryGirl.define do
     "user#{n}"
   end
   
-  factory :user do
+  factory :valid_user, class: User do
     email { generate(:email) }
     username { generate(:username) }
     password "hogehoge"
+    admin false
+  end
+
+  factory :invalid_name_user, class: User do
+    email { generate(:email) }
+    username { " " }
+    password "jassadetsagerdu"
     admin false
   end
 
@@ -19,4 +26,5 @@ FactoryGirl.define do
     password "hogehoge"
     admin true
   end
+
 end

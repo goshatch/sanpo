@@ -10,7 +10,7 @@ describe WalksController do
       end
     end
     context "an authenticated user" do
-      let(:user) { FactoryGirl.create(:user) }
+      let(:user) { FactoryGirl.create(:valid_user) }
       it "should not redirect" do
         sign_in :user, user
         get :index
@@ -21,7 +21,7 @@ describe WalksController do
 
   describe "GET 'show'" do
     let(:walk) { FactoryGirl.create(:walk) }
-    let(:user) { FactoryGirl.create(:user) }
+    let(:user) { FactoryGirl.create(:valid_user) }
     let(:valid_params) { { :id => walk } }
     context "an unauthenticated user" do
       it "should show the walk" do
@@ -39,7 +39,7 @@ describe WalksController do
   end
 
   describe "GET 'new'" do
-    let(:user) { FactoryGirl.create(:user) }
+    let(:user) { FactoryGirl.create(:valid_user) }
     context "an unauthenticated user" do
       it "should redirect" do
         get :new
@@ -56,7 +56,7 @@ describe WalksController do
   end
 
   describe "GET 'edit'" do
-    let(:user) { FactoryGirl.create(:user) }
+    let(:user) { FactoryGirl.create(:valid_user) }
     let(:walk) { FactoryGirl.create(:walk, :user => user) }
     let(:valid_params) { { :id => walk } }
     context "an unauthenticated user" do
@@ -76,7 +76,7 @@ describe WalksController do
       
       context "trying to edit someone else's walk" do
         it "should not be success" do
-          sign_in :user, FactoryGirl.create(:user)
+          sign_in :user, FactoryGirl.create(:valid_user)
           get :edit, valid_params
           response.should redirect_to('/401.html')
         end
