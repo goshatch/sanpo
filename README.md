@@ -26,3 +26,5 @@ environment (see bottom of ```config/application.rb```).
 
 ## Who made this?
 Originally developed by Gueorgui Tcherednitchenko ([@gueorgui](http://twitter.com/gueorgui)) in Tokyo, Japan.
+Illustrations by [@monja415](http://twitter.com/monja415).
+Additional tests by [cwabbott](https://github.com/cwabbott) and [EmilRehnberg](https://github.com/EmilRehnberg). Thank you very much!
