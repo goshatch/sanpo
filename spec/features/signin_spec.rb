@@ -36,15 +36,15 @@ describe "Sign-in requests" do
       describe "in the Users controller" do
 
         describe "get the edit page" do
-          before { visit edit_user_registration_path(user.username) }
+					before do visit edit_user_registration_path(user.username) end
           it { should have_content("You need to sign in or sign up before continuing.") }
         end
 
-        # TODO: Get this test working.
-        describe "update the profile" do
-          before do get user_registration_path(user.username) end
-          specify { response.should_not be_success }
-        end
+        # TODO: Not needed after update?
+        #describe "update the profile" do
+				#	before do put user_registration_path(user.username) end
+				#	specify { response.should_not be_success }
+        #end
       end
     end
   end

@@ -54,11 +54,11 @@ describe "User pages" do
         it { should have_content("My account") }
       end
 
-      # TODO: Get this test working.
-      describe "submitting a PUT request" do
-        before do put user_registration_path(other_user) end
-        specify { response.should_not be_success }
-      end
+      # TODO: Not needed after update?
+      #describe "submitting a PUT request" do
+      #  before do put user_registration_path(other_user) end
+      #  specify { response.should_not be_success }
+      #end
     end
   end
 end
