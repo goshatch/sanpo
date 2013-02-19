@@ -40,7 +40,24 @@ describe "User pages" do
 
       describe "new email should be shown in the edit page" do
         before do visit edit_user_registration_path(username) end
-        it { should have_selector( 'input', value: new_email ) }
+        it { should have_field( "Email", :with => new_email ) }
+      end
+    end
+
+    describe "with other user" do
+      let(:other_user) { FactoryGirl.create(:valid_user, 
+                                            email:"hepp@keff.com",
+                                            username:"fraud") }
+
+      describe "visiting Users#edit page" do
+        before do visit edit_user_registration_path(other_user) end
+        it { should have_content("My account") }
+      end
+
+      # TODO: Get this test working.
+      describe "submitting a PUT request" do
+        before do put user_registration_path(other_user) end
+        specify { response.should_not be_success }
       end
     end
   end

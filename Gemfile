@@ -22,7 +22,7 @@ gem 'haml-rails', :group => :development
 gem 'coffee-filter' # Coffeescript in HAML files
 
 gem "paperclip", "~> 2.4"
-gem "best_in_place", :git => "git://github.com/bernat/best_in_place.git"
+gem "best_in_place", :git => "http://github.com/bernat/best_in_place.git"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -40,7 +40,7 @@ gem "devise", "~> 2.0.0"
 gem "oa-oauth", :require => "omniauth/oauth"
 
 # Geocoding
-gem "geocoder", :git => "git://github.com/alexreisner/geocoder.git"
+gem "geocoder", :git => "http://github.com/alexreisner/geocoder.git"
 
 group :development, :test do
   # # To use debugger
