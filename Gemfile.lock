@@ -1,12 +1,12 @@
 GIT
-  remote: git://github.com/alexreisner/geocoder.git
-  revision: 97dffb7ff606bef84c0bce7142c6a66271bd39ca
+  remote: http://github.com/alexreisner/geocoder.git
+  revision: a35940bf73a44c7ecb944d373ee45552426d83aa
   specs:
     geocoder (1.1.6)
 
 GIT
-  remote: git://github.com/bernat/best_in_place.git
-  revision: b0659ec1d50dcff49a98757a7f854cebb3d2f669
+  remote: http://github.com/bernat/best_in_place.git
+  revision: 70f1ea8fd0353152c3bcfd477ca0238f06e6d47e
   specs:
     best_in_place (2.0.3)
       jquery-rails
